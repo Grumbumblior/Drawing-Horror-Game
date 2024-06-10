@@ -12,7 +12,7 @@ var points_raw : Array[Vector3] #gesture points not normalized
 @export var create_new_gesture : bool
 
 signal gesture_classified(GestureName : StringName)
-
+signal draw_sent
 # vector 3 is used, where z represents stroke index of line
 
 #region $Q parameters
@@ -33,7 +33,6 @@ var LUT = {}
 @export var joint_mode : int = 2
 @export var cap_mode : int = 2
 #endregion
-
 var can_draw : bool = true
 var stroke : Line2D
 func _input(event: InputEvent) -> void:
@@ -59,6 +58,7 @@ func _input(event: InputEvent) -> void:
 			stroke.antialiased = true
 			stroke.width = line_width
 			add_child(stroke)
+			emit_signal("draw_sent", stroke)
 		if event.is_action_released("line_press"):
 			#print("mouse up")
 			stroke = null

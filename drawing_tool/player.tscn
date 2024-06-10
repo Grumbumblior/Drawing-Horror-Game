@@ -17,6 +17,7 @@ script = ExtResource("1_hou0v")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_lygw4")
 surface_material_override/0 = SubResource("StandardMaterial3D_2y0pq")
 
@@ -29,5 +30,16 @@ transform = Transform3D(0.911592, 0, 0, 0, 0.911592, 0, 0, 0, 0.911592, 0, 2.347
 
 [node name="Camera3D" type="Camera3D" parent="Head2"]
 
+[node name="RayCast3D" type="RayCast3D" parent="Head2/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.200279)
+target_position = Vector3(0, 0, -1)
+collide_with_areas = true
+debug_shape_custom_color = Color(0, 0, 0.717647, 1)
+
+[node name="Marker3D" type="Marker3D" parent="Head2/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.721898)
+
 [node name="GestureNode" type="Node2D" parent="."]
 script = ExtResource("2_wyy8a")
+
+[connection signal="draw_sent" from="GestureNode" to="." method="_on_gesture_node_draw_sent"]

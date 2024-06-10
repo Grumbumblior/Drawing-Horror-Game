@@ -9,11 +9,14 @@ const SENSITIVITY = 0.003
 const BOB_FREQ = 2.0
 const BOB_AMP = 0.08
 
+const RUNE = preload("res://rune_decal.tscn")
 var t_bob = 0.0
 var speed = WALK_SPEED
 @onready var gestures = $GestureNode
 @onready var head = $Head2
 @onready var camera = $Head2/Camera3D
+@onready var ray = $Head2/Camera3D/RayCast3D
+@onready var marker = $Head2/Camera3D/Marker3D
 
 enum{
 	ACT,
@@ -22,8 +25,8 @@ enum{
 
 var state = ACT
 
-#func _ready():
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+func _ready():
+	gestures.gesture_classified.connect(on_gesture_classified)
 	
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and state != DRAW:
@@ -36,6 +39,8 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	if Input.is_action_pressed("exit"):
+		get_tree().quit()
 	match state:
 		ACT:
 			act_state(delta)
@@ -46,13 +51,13 @@ func act_state(delta):
 	# Handle jump.
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	gestures.can_draw = false
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept") and ray.is_colliding():
 		state = DRAW
 	
-	if Input.is_action_pressed("sprint"):
-		speed = SPRINT_SPEED
-	else:
-		speed = WALK_SPEED
+	#if Input.is_action_pressed("sprint"):
+		#speed = SPRINT_SPEED
+	#else:
+		#speed = WALK_SPEED
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI  actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -80,4 +85,27 @@ func draw_state():
 	gestures.can_draw = true
 	if Input.is_action_just_pressed("ui_accept"):
 		state = ACT
+	
+func _on_gesture_node_draw_sent(stroke) -> void:
+	var new_rune = RUNE.instantiate()
+	print(stroke)
+	new_rune.texture_albedo = stroke.get_texture()
+	get_tree().get_root().add_child(new_rune)
+	new_rune.global_position = marker.global_position
+
+func on_gesture_classified(gesture_name : StringName):
+	var new_rune = RUNE.instantiate()
+	new_rune.texture_albedo = load("res://images/%s.png" % gesture_name)
+	get_tree().get_root().add_child(new_rune)
+	new_rune.global_transform.origin = ray.get_collision_point()
+	new_rune.look_at(ray.get_collision_normal())
+	if gesture_name == "Time":
+		print("za warudo")
+		speed = 100
+		
+		#new_rune.setup(ray.get_collision_point(), ray.get_collision_normal())
+	
+		
+		
+
 	
