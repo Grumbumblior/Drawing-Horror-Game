@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o37bs1rpo1rc"
-path="res://.godot/imported/Ilx.png-e5e6c1c01e8ee9b726d8fd79d126117c.ctex"
+uid="uid://dvr7cagnmw66o"
+path="res://.godot/imported/Kaunaz.png-950fa3d22253760c2cfaa91703965390.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/Ilx.png"
-dest_files=["res://.godot/imported/Ilx.png-e5e6c1c01e8ee9b726d8fd79d126117c.ctex"]
+source_file="res://images/Kaunaz.png"
+dest_files=["res://.godot/imported/Kaunaz.png-950fa3d22253760c2cfaa91703965390.ctex"]
 
 [params]
 

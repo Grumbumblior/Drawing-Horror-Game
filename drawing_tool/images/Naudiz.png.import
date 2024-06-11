@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o37bs1rpo1rc"
-path="res://.godot/imported/Ilx.png-e5e6c1c01e8ee9b726d8fd79d126117c.ctex"
+uid="uid://cldw22fiuvoi8"
+path="res://.godot/imported/Naudiz.png-02db0680c8c32356afb723c98d4875dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/Ilx.png"
-dest_files=["res://.godot/imported/Ilx.png-e5e6c1c01e8ee9b726d8fd79d126117c.ctex"]
+source_file="res://images/Naudiz.png"
+dest_files=["res://.godot/imported/Naudiz.png-02db0680c8c32356afb723c98d4875dd.ctex"]
 
 [params]
 

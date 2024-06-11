@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o37bs1rpo1rc"
-path="res://.godot/imported/Ilx.png-e5e6c1c01e8ee9b726d8fd79d126117c.ctex"
+uid="uid://ccj6spqalr8am"
+path="res://.godot/imported/Thurisaz.png-e50e6b08d102352e28b749b2638a7f53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/Ilx.png"
-dest_files=["res://.godot/imported/Ilx.png-e5e6c1c01e8ee9b726d8fd79d126117c.ctex"]
+source_file="res://images/Thurisaz.png"
+dest_files=["res://.godot/imported/Thurisaz.png-e50e6b08d102352e28b749b2638a7f53.ctex"]
 
 [params]
 

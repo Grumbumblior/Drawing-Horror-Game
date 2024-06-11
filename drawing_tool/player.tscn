@@ -32,7 +32,7 @@ transform = Transform3D(0.911592, 0, 0, 0, 0.911592, 0, 0, 0, 0.911592, 0, 2.347
 
 [node name="RayCast3D" type="RayCast3D" parent="Head2/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.200279)
-target_position = Vector3(0, 0, -1)
+target_position = Vector3(0, 0, -0.5)
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 0, 0.717647, 1)
 

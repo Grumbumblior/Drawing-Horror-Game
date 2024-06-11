@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://bu3jdeijnq11d"]
 
 [node name="rune_decal" type="Decal"]
-size = Vector3(0.5, 0.5, 0.5)
-emission_energy = 16.0
-modulate = Color(0.737971, 0, 0.0829661, 1)
-upper_fade = 1e-05
+size = Vector3(1, 1, 1)
+upper_fade = 0.000162535
 lower_fade = 1e-05

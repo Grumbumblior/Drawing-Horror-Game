@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o37bs1rpo1rc"
-path="res://.godot/imported/Ilx.png-e5e6c1c01e8ee9b726d8fd79d126117c.ctex"
+uid="uid://dfifj3l140v4k"
+path="res://.godot/imported/Jara.png-fb549004321183cb5c2e11743c37259c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/Ilx.png"
-dest_files=["res://.godot/imported/Ilx.png-e5e6c1c01e8ee9b726d8fd79d126117c.ctex"]
+source_file="res://images/Jara.png"
+dest_files=["res://.godot/imported/Jara.png-fb549004321183cb5c2e11743c37259c.ctex"]
 
 [params]
 

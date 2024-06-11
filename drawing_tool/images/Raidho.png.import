@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o37bs1rpo1rc"
-path="res://.godot/imported/Ilx.png-e5e6c1c01e8ee9b726d8fd79d126117c.ctex"
+uid="uid://foxyf00wm2od"
+path="res://.godot/imported/Raidho.png-308474bb4d5645148e705f010d64e020.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/Ilx.png"
-dest_files=["res://.godot/imported/Ilx.png-e5e6c1c01e8ee9b726d8fd79d126117c.ctex"]
+source_file="res://images/Raidho.png"
+dest_files=["res://.godot/imported/Raidho.png-308474bb4d5645148e705f010d64e020.ctex"]
 
 [params]
 

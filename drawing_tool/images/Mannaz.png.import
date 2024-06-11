@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o37bs1rpo1rc"
-path="res://.godot/imported/Ilx.png-e5e6c1c01e8ee9b726d8fd79d126117c.ctex"
+uid="uid://by5po3t4yn50x"
+path="res://.godot/imported/Mannaz.png-1578f2a158c7754ecedecce42e3a64fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/Ilx.png"
-dest_files=["res://.godot/imported/Ilx.png-e5e6c1c01e8ee9b726d8fd79d126117c.ctex"]
+source_file="res://images/Mannaz.png"
+dest_files=["res://.godot/imported/Mannaz.png-1578f2a158c7754ecedecce42e3a64fd.ctex"]
 
 [params]
 

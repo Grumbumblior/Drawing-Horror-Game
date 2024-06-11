@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o37bs1rpo1rc"
-path="res://.godot/imported/Ilx.png-e5e6c1c01e8ee9b726d8fd79d126117c.ctex"
+uid="uid://bydn230gtyry"
+path="res://.godot/imported/Time.png-6a1e08af9f9f0dc3c03c6508a7a5aae3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/Ilx.png"
-dest_files=["res://.godot/imported/Ilx.png-e5e6c1c01e8ee9b726d8fd79d126117c.ctex"]
+source_file="res://images/Time.png"
+dest_files=["res://.godot/imported/Time.png-6a1e08af9f9f0dc3c03c6508a7a5aae3.ctex"]
 
 [params]
 

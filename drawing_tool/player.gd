@@ -94,11 +94,20 @@ func _on_gesture_node_draw_sent(stroke) -> void:
 	new_rune.global_position = marker.global_position
 
 func on_gesture_classified(gesture_name : StringName):
-	var new_rune = RUNE.instantiate()
-	new_rune.texture_albedo = load("res://images/%s.png" % gesture_name)
-	get_tree().get_root().add_child(new_rune)
-	new_rune.global_transform.origin = ray.get_collision_point()
-	new_rune.look_at(ray.get_collision_normal())
+	var space_state = get_world_3d().direct_space_state
+	var screen_center = get_viewport().size/2
+	var origin = camera.project_ray_origin(screen_center)
+	var end = origin + camera.project_ray_normal(screen_center) * 1000
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	query.collide_with_bodies = true
+	var result = space_state.intersect_ray(query)
+	if result:
+		_spawn_rune(result.get("position"), result.get("normal"), gesture_name)
+	
+	#new_rune.texture_albedo = load("res://images/%s.png" % gesture_name)
+	#get_tree().get_root().add_child(new_rune)
+	#new_rune.global_transform.origin = ray.get_collision_point()
+	#new_rune.look_at(ray.get_collision_normal())
 	if gesture_name == "Time":
 		print("za warudo")
 		speed = 100
@@ -107,5 +116,10 @@ func on_gesture_classified(gesture_name : StringName):
 	
 		
 		
-
-	
+func _spawn_rune(position : Vector3, normal: Vector3, gesture_name: String) -> void:
+	var new_rune = RUNE.instantiate()
+	new_rune.texture_albedo = load("res://images/%s.png" % gesture_name)
+	get_tree().get_root().add_child(new_rune)
+	new_rune.global_position = position
+	new_rune.look_at((new_rune.global_transform.origin + normal), Vector3.UP)
+	new_rune.rotate_object_local(Vector3(1,0,0), 90)
