@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://btrtinkfcd7pt"]
+
+[ext_resource type="Script" path="res://environment/Items/runestone.gd" id="1_0nnd4"]
+[ext_resource type="PackedScene" uid="uid://cxueo1j1ef1yv" path="res://UI/interaction_area.tscn" id="2_ss7lq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h24c6"]
+
+[node name="Runestone" type="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1.6897, 0, 0, 0, 0.402021, 0.570618, 0.818823, -0.00844538)
+use_collision = true
+script = ExtResource("1_0nnd4")
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.634343)
+size = Vector3(1, 1, 1)
+emission_energy = 15.0
+modulate = Color(0, 0.145098, 1, 1)
+distance_fade_enabled = true
+distance_fade_begin = 10.0
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_ss7lq")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(3.38656, 0, 0, 0, 2.03917, 0, 0, 0, 8.35381, 0, 0, 0)
+shape = SubResource("SphereShape3D_h24c6")
+
+[connection signal="rune_collected" from="." to="." method="_on_rune_collected"]

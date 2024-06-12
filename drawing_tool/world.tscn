@@ -1,9 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgvpmhc5kqmfk"]
+[gd_scene load_steps=19 format=3 uid="uid://bgvpmhc5kqmfk"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_j4cq3"]
-[ext_resource type="PackedScene" uid="uid://c3b5ki3ke7o61" path="res://player.tscn" id="1_uqokv"]
-[ext_resource type="PackedScene" uid="uid://c0dqnydg11xhd" path="res://hud.tscn" id="3_5lixg"]
-[ext_resource type="PackedScene" uid="uid://b8w1bgk3il3op" path="res://enemy.tscn" id="3_di7yc"]
+[ext_resource type="PackedScene" uid="uid://c3b5ki3ke7o61" path="res://player/player.tscn" id="1_uqokv"]
+[ext_resource type="PackedScene" uid="uid://c0dqnydg11xhd" path="res://UI/hud.tscn" id="3_5lixg"]
+[ext_resource type="PackedScene" uid="uid://b8w1bgk3il3op" path="res://enemies/enemy.tscn" id="3_di7yc"]
+[ext_resource type="Texture2D" uid="uid://dt3qu4po8ugdn" path="res://textures/Ground Stones/GroundStones_Height.jpg" id="4_iuqyw"]
+[ext_resource type="Texture2D" uid="uid://t00hlrdb2r4h" path="res://textures/GroundStones_Ambient Occlusion.jpg" id="5_t0p2p"]
+[ext_resource type="Texture2D" uid="uid://dwhilb1c1qp26" path="res://textures/Ground Stones/GroundStones_Metallic.jpg" id="6_mtqhm"]
+[ext_resource type="Texture2D" uid="uid://ckd5wtqckylyc" path="res://textures/Ground Stones/GroundStones_Normal.jpg" id="7_wrrpy"]
+[ext_resource type="Texture2D" uid="uid://w7k25wxc7t7p" path="res://textures/Ground Stones/GroundStones_Roughness.jpg" id="8_0cfps"]
+[ext_resource type="PackedScene" uid="uid://btrtinkfcd7pt" path="res://environment/Items/runestone.tscn" id="9_wdj1s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ak3sl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -13,14 +19,20 @@ ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 sky_material = SubResource("ProceduralSkyMaterial_ak3sl")
 
 [sub_resource type="Environment" id="Environment_1nn37"]
-background_mode = 2
+background_mode = 1
 sky = SubResource("Sky_oa3sj")
 tonemap_mode = 2
 glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
+volumetric_fog_albedo = Color(0.363112, 0.0347508, 0.136552, 1)
+adjustment_enabled = true
+adjustment_contrast = 1.2
+adjustment_saturation = 1.5
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_beyeb"]
-vertices = PackedVector3Array(-0.376953, 0.25211, 8.84766, -0.376953, 0.25211, 7.59766, -1.37695, 0.25211, 7.34766, -10.127, 0.25211, 8.84766, -1.37695, 0.25211, 5.59766, -0.376953, 0.25211, 5.34766, -0.376953, 0.25211, 3.59766, -2.37695, 0.25211, 3.59766, 8.87305, 0.25211, -10.4023, 9.62305, 0.25211, -10.6523, 9.62305, 0.25211, -36.9023, 1.87305, 0.25211, 1.34766, 2.12305, 0.25211, 2.34766, 8.87305, 0.25211, 2.34766, -2.62695, 0.25211, 1.59766, -43.377, 0.25211, -36.9023, -43.377, 0.25211, 9.59766, -10.377, 0.25211, 9.59766, 0.873047, 0.25211, 7.34766, 8.87305, 0.25211, 8.84766, 0.873047, 0.25211, 5.59766, 1.87305, 0.25211, 3.59766)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(8, 10, 9), PackedInt32Array(4, 2, 7), PackedInt32Array(7, 2, 3), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 8), PackedInt32Array(8, 11, 14), PackedInt32Array(14, 3, 8), PackedInt32Array(8, 3, 10), PackedInt32Array(10, 3, 16), PackedInt32Array(10, 16, 15), PackedInt32Array(3, 14, 7), PackedInt32Array(3, 17, 16), PackedInt32Array(1, 18, 0), PackedInt32Array(0, 18, 19), PackedInt32Array(5, 6, 20), PackedInt32Array(20, 6, 21), PackedInt32Array(21, 12, 13), PackedInt32Array(20, 21, 18), PackedInt32Array(18, 21, 13), PackedInt32Array(18, 13, 19)]
+vertices = PackedVector3Array(-22.146, 0.25211, -21.434, -21.646, 0.25211, -21.684, -21.646, 0.25211, -23.934, -6.396, 0.25211, -23.934, -6.146, 0.25211, -22.934, 9.604, 0.25211, -22.934, 9.604, 0.25211, -217.684, -21.396, 0.25211, 9.56601, -21.396, 0.25211, -16.184, -22.146, 0.25211, -16.434, -218.896, 0.25211, 9.56601, -218.896, 0.25211, -217.684, -5.646, 0.25211, -0.93399, -2.646, 0.25211, 1.81601, -2.396, 0.25211, 1.31601, 1.854, 0.25211, 1.31601, 2.104, 0.25211, 2.31601, 8.854, 0.25211, 2.31601, 8.854, 0.25211, -10.434, 9.604, 0.25211, -10.684, -6.146, 0.25211, -21.934, -6.646, 0.25211, -21.684, -20.396, 0.25211, -16.684, -20.646, 0.25211, -21.684, -0.145996, 0.25211, 8.81601, -0.145996, 0.25211, 7.56601, -1.146, 0.25211, 7.31601, -10.146, 0.25211, 8.81601, -1.146, 0.25211, 5.56601, -0.145996, 0.25211, 5.31601, -0.145996, 0.25211, 3.56601, -2.396, 0.25211, 3.56601, -10.396, 0.25211, 9.56601, -20.646, 0.25211, -16.184, 1.104, 0.25211, 7.31601, 8.854, 0.25211, 8.81601, 1.104, 0.25211, 5.56601, 1.854, 0.25211, 3.56601)
+polygons = [PackedInt32Array(0, 2, 1), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(8, 7, 9), PackedInt32Array(9, 7, 10), PackedInt32Array(2, 0, 6), PackedInt32Array(6, 0, 11), PackedInt32Array(11, 0, 10), PackedInt32Array(6, 3, 2), PackedInt32Array(0, 9, 10), PackedInt32Array(14, 13, 12), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(15, 14, 12), PackedInt32Array(5, 19, 18), PackedInt32Array(20, 5, 21), PackedInt32Array(21, 5, 18), PackedInt32Array(21, 18, 12), PackedInt32Array(12, 18, 15), PackedInt32Array(20, 4, 5), PackedInt32Array(23, 21, 22), PackedInt32Array(22, 21, 12), PackedInt32Array(25, 24, 26), PackedInt32Array(26, 24, 27), PackedInt32Array(29, 28, 30), PackedInt32Array(30, 28, 31), PackedInt32Array(27, 32, 7), PackedInt32Array(28, 26, 31), PackedInt32Array(31, 26, 27), PackedInt32Array(12, 13, 31), PackedInt32Array(31, 27, 12), PackedInt32Array(12, 27, 7), PackedInt32Array(12, 7, 33), PackedInt32Array(33, 7, 8), PackedInt32Array(12, 33, 22), PackedInt32Array(25, 34, 24), PackedInt32Array(24, 34, 35), PackedInt32Array(29, 30, 36), PackedInt32Array(36, 30, 37), PackedInt32Array(37, 16, 17), PackedInt32Array(36, 37, 34), PackedInt32Array(34, 37, 17), PackedInt32Array(34, 17, 35)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0hdw"]
 albedo_color = Color(0.286275, 1, 0, 1)
@@ -30,6 +42,18 @@ albedo_color = Color(0.286275, 1, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53ab4"]
 albedo_color = Color(0.286275, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0o2v8"]
+albedo_texture = ExtResource("4_iuqyw")
+metallic = 1.0
+metallic_texture = ExtResource("6_mtqhm")
+roughness_texture = ExtResource("8_0cfps")
+normal_enabled = true
+normal_texture = ExtResource("7_wrrpy")
+ao_enabled = true
+ao_texture = ExtResource("5_t0p2p")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_iuqyw")
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_j4cq3")
@@ -44,7 +68,6 @@ transform = Transform3D(0.299173, 0, 0, 0, 0.299173, 0, 0, 0, 0.299173, -13.6012
 layer = 0
 
 [node name="HUD" parent="Player/CanvasLayer2" instance=ExtResource("3_5lixg")]
-scale = Vector2(1, 1.01754)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 10.3408, 9.83246, 14.7727)
@@ -58,9 +81,9 @@ environment = SubResource("Environment_1nn37")
 navigation_mesh = SubResource("NavigationMesh_beyeb")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(20, 0, 0, 0, 1.874, 0, 0, 0, 20, -16.9385, 0, -13.7012)
+transform = Transform3D(20, 0, 0, 0, 1.874, 0, 0, 0, 20, -104.698, 0, -104.092)
 use_collision = true
-size = Vector3(2.69385, 0.002, 2.37012)
+size = Vector3(11.4698, 0.002, 11.4092)
 material = SubResource("StandardMaterial3D_s0hdw")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
@@ -85,15 +108,27 @@ collision_mask = 3
 size = Vector3(3.47803, 3.06104, 1)
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.059, 1.28263, -22.925)
+transform = Transform3D(4.18498, 0, 0, 0, 1, 0, 0, 0, 1, -14.059, 1.28263, -22.925)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
 size = Vector3(3.47803, 3.06104, 1)
+material = SubResource("StandardMaterial3D_0o2v8")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.145485, 1.52705, 6.34999)
 use_collision = true
+
+[node name="Runestone" parent="NavigationRegion3D" instance=ExtResource("9_wdj1s")]
+transform = Transform3D(-4.37114e-08, 0, 0.402021, 0, 1.6897, 0, -1, 0, -1.75729e-08, -21.3424, 0.818823, -17.4208)
+
+[node name="Runestone2" parent="NavigationRegion3D" instance=ExtResource("9_wdj1s")]
+transform = Transform3D(-4.37114e-08, 0, 0.402021, 0, 1.6897, 0, -1, 0, -1.75729e-08, -21.3424, 0.818823, -18.9325)
+runeNum = 1
+
+[node name="Runestone3" parent="NavigationRegion3D" instance=ExtResource("9_wdj1s")]
+transform = Transform3D(-4.37114e-08, 0, 0.402021, 0, 1.6897, 0, -1, 0, -1.75729e-08, -21.3424, 0.818823, -20.6173)
+runeNum = 2
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("waypoints") instance=ExtResource("3_di7yc")]
 transform = Transform3D(0.508425, 0, -0.861106, 0, 1, 0, 0.861106, 0, 0.508425, -5.07881, 1.57088, -2.9504)

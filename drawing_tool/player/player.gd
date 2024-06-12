@@ -9,7 +9,7 @@ const SENSITIVITY = 0.003
 const BOB_FREQ = 2.0
 const BOB_AMP = 0.08
 
-const RUNE = preload("res://rune_decal.tscn")
+const RUNE = preload("res://environment/Items/rune_decal.tscn")
 var t_bob = 0.0
 var speed = WALK_SPEED
 
@@ -58,10 +58,10 @@ func act_state(delta):
 	if Input.is_action_just_pressed("ui_accept") and ray.is_colliding():
 		state = DRAW
 	
-	#if Input.is_action_pressed("sprint"):
-		#speed = SPRINT_SPEED
-	#else:
-		#speed = WALK_SPEED
+	if Input.is_action_pressed("sprint"):
+		speed = SPRINT_SPEED
+	else:
+		speed = WALK_SPEED
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI  actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -118,6 +118,7 @@ func on_gesture_classified(gesture_name : StringName):
 	elif gesture_name == "Tele":
 		self.global_position = home.global_position
 		#new_rune.setup(ray.get_collision_point(), ray.get_collision_normal())
+	state = ACT
 	
 func check_valid_rune(gesture_name):
 	if gesture_name in G.allRunes:
@@ -131,10 +132,12 @@ func _spawn_rune(position : Vector3, normal: Vector3, gesture_name: String) -> v
 	var new_rune = RUNE.instantiate()
 	new_rune.texture_albedo = load("res://images/%s.png" % gesture_name)
 	new_rune.texture_emission = load("res://images/%s.png" % gesture_name)
+	new_rune.rotate_y(deg_to_rad(180))
 	get_tree().get_root().add_child(new_rune)
 	new_rune.global_position = position
 	new_rune.look_at((new_rune.global_transform.origin + normal), Vector3.UP)
 	new_rune.rotate_object_local(Vector3(1,0,0), 90)
+	new_rune.rotate_object_local(Vector3(0,0,1), deg_to_rad(180))
 	
 func _on_game_won():
 	print("won")

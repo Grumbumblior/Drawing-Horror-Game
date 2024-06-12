@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c0dqnydg11xhd"]
 
-[ext_resource type="Script" path="res://hud.gd" id="1_i8tqd"]
+[ext_resource type="Script" path="res://UI/hud.gd" id="1_i8tqd"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -16,17 +16,20 @@ script = ExtResource("1_i8tqd")
 [node name="RunePics" type="Node" parent="."]
 
 [node name="Rune0" type="TextureRect" parent="RunePics"]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 expand_mode = 1
 
 [node name="Rune1" type="TextureRect" parent="RunePics"]
+visible = false
 offset_left = 50.0
 offset_right = 90.0
 offset_bottom = 40.0
 expand_mode = 1
 
 [node name="Rune2" type="TextureRect" parent="RunePics"]
+visible = false
 offset_left = 100.0
 offset_right = 140.0
 offset_bottom = 40.0
@@ -34,10 +37,11 @@ scale = Vector2(1.01037, 1.02778)
 expand_mode = 1
 
 [node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
 visible = false
 layout_mode = 0
-offset_left = 224.0
-offset_top = 193.603
-offset_right = 507.0
-offset_bottom = 216.603
+offset_left = 416.0
+offset_top = 300.725
+offset_right = 699.0
+offset_bottom = 323.725
 text = "You Win! You Beat Cricket! Be proud."

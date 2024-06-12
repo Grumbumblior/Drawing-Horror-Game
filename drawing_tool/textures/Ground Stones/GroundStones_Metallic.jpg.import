@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crqnxde6eepiq"
-path.s3tc="res://.godot/imported/Fehu.png-e12bfab56bb0ba9b1e447d9adbe5d85f.s3tc.ctex"
+uid="uid://dwhilb1c1qp26"
+path.s3tc="res://.godot/imported/GroundStones_Metallic.jpg-57624df81171ea91b7eb674bea381652.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://images/Fehu.png"
-dest_files=["res://.godot/imported/Fehu.png-e12bfab56bb0ba9b1e447d9adbe5d85f.s3tc.ctex"]
+source_file="res://textures/Ground Stones/GroundStones_Metallic.jpg"
+dest_files=["res://.godot/imported/GroundStones_Metallic.jpg-57624df81171ea91b7eb674bea381652.s3tc.ctex"]
 
 [params]
 

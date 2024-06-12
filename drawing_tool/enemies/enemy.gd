@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 			move_towards_point(chaseSpeed)
 		HUNT:
 			animation.animation = "Idle"
-			if navigationAgent.is_navigation_finisahed():
+			if navigationAgent.is_navigation_finished():
 				patrolTimer.start()
 				state = WAIT
 			move_towards_point(patrolSpeed)
@@ -74,11 +74,11 @@ func move_towards_point(speed):
 	pass
 
 func check_for_player():
-	#var space_state = get_world_3d().direct_space_state
-	#var result = space_state.intersect_ray(PhysicsRayQueryParameters3D.create($Head.global_position, player.get_node("Head2/Camera3D").global_position, 1, [self]))
-	#if result.size() > 0:
-		#print("hi")
-		#if result["collider"].is_in_group("Player"):
+	var space_state = get_world_3d().direct_space_state
+	var result = space_state.intersect_ray(PhysicsRayQueryParameters3D.create($Head.global_position, player.get_node("Head2/Camera3D").global_position, 1, [self]))
+	if result.size() > 0:
+		print(result)
+		if result["collider"].is_in_group("Player"):
 			if(playerInEarshotClose):
 				print("chase")
 				state = CHASE

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crqnxde6eepiq"
-path.s3tc="res://.godot/imported/Fehu.png-e12bfab56bb0ba9b1e447d9adbe5d85f.s3tc.ctex"
+uid="uid://w7k25wxc7t7p"
+path.s3tc="res://.godot/imported/GroundStones_Roughness.jpg-b9710c5b2bda8efc0fdf70f118b514cb.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://images/Fehu.png"
-dest_files=["res://.godot/imported/Fehu.png-e12bfab56bb0ba9b1e447d9adbe5d85f.s3tc.ctex"]
+source_file="res://textures/Ground Stones/GroundStones_Roughness.jpg"
+dest_files=["res://.godot/imported/GroundStones_Roughness.jpg-b9710c5b2bda8efc0fdf70f118b514cb.s3tc.ctex"]
 
 [params]
 

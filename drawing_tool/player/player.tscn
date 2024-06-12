@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c3b5ki3ke7o61"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_hou0v"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_hou0v"]
 [ext_resource type="Script" path="res://q_recognizer/gesture_node.gd" id="2_wyy8a"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lygw4"]
@@ -37,6 +37,12 @@ debug_shape_custom_color = Color(0, 0, 0.717647, 1)
 
 [node name="Marker3D" type="Marker3D" parent="Head2/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.721898)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Head2/Camera3D"]
+light_color = Color(1, 0.788235, 0.627451, 1)
+light_energy = 0.1
+omni_range = 3.0
+omni_attenuation = 1.5
 
 [node name="GestureNode" type="Node2D" parent="."]
 script = ExtResource("2_wyy8a")

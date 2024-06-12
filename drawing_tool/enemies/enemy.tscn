@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://b8w1bgk3il3op"]
 
-[ext_resource type="Script" path="res://enemy.gd" id="1_jnkpe"]
+[ext_resource type="Script" path="res://enemies/enemy.gd" id="1_jnkpe"]
 [ext_resource type="Texture2D" uid="uid://d08u63gf0bw8y" path="res://images/cricket_angry.png" id="2_jbg2r"]
 [ext_resource type="Texture2D" uid="uid://b6cakaejb3ga7" path="res://images/cricket_clear.png" id="2_o4p84"]
 

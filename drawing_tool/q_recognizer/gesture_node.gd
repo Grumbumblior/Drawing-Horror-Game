@@ -45,9 +45,11 @@ func _input(event: InputEvent) -> void:
 	#if not Engine.is_editor_hint():
 	if event.is_action_pressed("recognize_gesture"):
 		#print("call recognition function")
-		register_gesture()
-		gesture_classified.emit(QPointCloudRecognizer.classify(gesture_resource))
-		reset_gesture()
+		if register_gesture():
+			gesture_classified.emit(QPointCloudRecognizer.classify(gesture_resource))
+			reset_gesture()
+		else: 
+			pass
 
 	if can_draw:
 		if event.is_action_pressed("line_press"):
@@ -90,6 +92,9 @@ func register_gesture():
 			line_to_vec3_array(children[i], i)
 		normalize_points()
 		save_gesture_to_resource()
+		return true
+	else: 
+		return false
 
 func line_to_vec3_array(line : Line2D, index : int):
 	for point in line.points:
