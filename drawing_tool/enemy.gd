@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 			move_towards_point(chaseSpeed)
 		HUNT:
 			animation.animation = "Idle"
-			if navigationAgent.is_navigation_finished():
+			if navigationAgent.is_navigation_finisahed():
 				patrolTimer.start()
 				state = WAIT
 			move_towards_point(patrolSpeed)

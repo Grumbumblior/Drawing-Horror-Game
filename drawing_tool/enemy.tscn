@@ -87,6 +87,7 @@ shape = SubResource("ConvexPolygonShape3D_q4sjo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.559574, 0)
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.364159, 0)
 billboard = 2
 sprite_frames = SubResource("SpriteFrames_pay5r")
 animation = &"Chase"

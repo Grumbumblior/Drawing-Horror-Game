@@ -6,6 +6,7 @@ extends Node
 
 var rng = RandomNumberGenerator.new()
 var allRunes = ["Fehu", "Ilx", "Jara", "Kaunaz", "Mannaz", "Naudiz", "Raidho", "Thurisaz", "Uruz"]
+var runeIndex = 0
 
 var castRunes = []
 
@@ -19,6 +20,6 @@ func _ready() -> void:
 	print(runeSequence)
 		
 	
-func _process(delta: float) -> void:
+func check_won():
 	if castRunes == runeSequence:
 		game_won.emit()

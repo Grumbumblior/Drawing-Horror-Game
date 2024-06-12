@@ -12,6 +12,8 @@ const BOB_AMP = 0.08
 const RUNE = preload("res://rune_decal.tscn")
 var t_bob = 0.0
 var speed = WALK_SPEED
+
+var G = GameManager
 @onready var gestures = $GestureNode
 @onready var head = $Head2
 @onready var camera = $Head2/Camera3D
@@ -27,7 +29,7 @@ enum{
 var state = ACT
 
 func _ready():
-	GameManager.game_won.connect(_on_game_won)
+	G.game_won.connect(_on_game_won)
 	gestures.gesture_classified.connect(on_gesture_classified)
 	
 func _unhandled_input(event):
@@ -96,9 +98,6 @@ func _on_gesture_node_draw_sent(stroke) -> void:
 	new_rune.global_position = marker.global_position
 
 func on_gesture_classified(gesture_name : StringName):
-	if gesture_name in GameManager.allRunes:
-		GameManager.castRunes.append(gesture_name.replace("&", ""))
-	print(GameManager.castRunes)
 	var space_state = get_world_3d().direct_space_state
 	var screen_center = get_viewport().size/2
 	var origin = camera.project_ray_origin(screen_center)
@@ -108,7 +107,7 @@ func on_gesture_classified(gesture_name : StringName):
 	var result = space_state.intersect_ray(query)
 	if result:
 		_spawn_rune(result.get("position"), result.get("normal"), gesture_name)
-	
+	check_valid_rune(gesture_name)
 	#new_rune.texture_albedo = load("res://images/%s.png" % gesture_name)
 	#get_tree().get_root().add_child(new_rune)
 	#new_rune.global_transform.origin = ray.get_collision_point()
@@ -120,8 +119,14 @@ func on_gesture_classified(gesture_name : StringName):
 		self.global_position = home.global_position
 		#new_rune.setup(ray.get_collision_point(), ray.get_collision_normal())
 	
-		
-		
+func check_valid_rune(gesture_name):
+	if gesture_name in G.allRunes:
+		if gesture_name == G.runeSequence[G.runeIndex]:
+			G.castRunes.append(gesture_name.replace("&", ""))
+			G.runeIndex = G.runeIndex + 1
+			G.check_won()
+	print(G.castRunes)
+	
 func _spawn_rune(position : Vector3, normal: Vector3, gesture_name: String) -> void:
 	var new_rune = RUNE.instantiate()
 	new_rune.texture_albedo = load("res://images/%s.png" % gesture_name)
