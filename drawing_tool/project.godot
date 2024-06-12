@@ -23,6 +23,10 @@ QPointCloudRecognizer="*res://q_recognizer/q_point_cloud_recognizer.gd"
 
 enabled=PackedStringArray()
 
+[global_group]
+
+Player=""
+
 [input]
 
 start_gesture={

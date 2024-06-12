@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgvpmhc5kqmfk"]
+[gd_scene load_steps=11 format=3 uid="uid://bgvpmhc5kqmfk"]
 
+[ext_resource type="Script" path="res://world.gd" id="1_j4cq3"]
 [ext_resource type="PackedScene" uid="uid://c3b5ki3ke7o61" path="res://player.tscn" id="1_uqokv"]
+[ext_resource type="PackedScene" uid="uid://b8w1bgk3il3op" path="res://enemy.tscn" id="3_di7yc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ak3sl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -15,40 +17,46 @@ sky = SubResource("Sky_oa3sj")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_beyeb"]
+vertices = PackedVector3Array(-0.376953, 0.25211, 8.84766, -0.376953, 0.25211, 7.59766, -1.37695, 0.25211, 7.34766, -10.127, 0.25211, 8.84766, -1.37695, 0.25211, 5.59766, -0.376953, 0.25211, 5.34766, -0.376953, 0.25211, 3.59766, -2.37695, 0.25211, 3.59766, 8.87305, 0.25211, -10.4023, 9.62305, 0.25211, -10.6523, 9.62305, 0.25211, -36.9023, 1.87305, 0.25211, 1.34766, 2.12305, 0.25211, 2.34766, 8.87305, 0.25211, 2.34766, -2.62695, 0.25211, 1.59766, -43.377, 0.25211, -36.9023, -43.377, 0.25211, 9.59766, -10.377, 0.25211, 9.59766, 0.873047, 0.25211, 7.34766, 8.87305, 0.25211, 8.84766, 0.873047, 0.25211, 5.59766, 1.87305, 0.25211, 3.59766)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(8, 10, 9), PackedInt32Array(4, 2, 7), PackedInt32Array(7, 2, 3), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 8), PackedInt32Array(8, 11, 14), PackedInt32Array(14, 3, 8), PackedInt32Array(8, 3, 10), PackedInt32Array(10, 3, 16), PackedInt32Array(10, 16, 15), PackedInt32Array(3, 14, 7), PackedInt32Array(3, 17, 16), PackedInt32Array(1, 18, 0), PackedInt32Array(0, 18, 19), PackedInt32Array(5, 6, 20), PackedInt32Array(20, 6, 21), PackedInt32Array(21, 12, 13), PackedInt32Array(20, 21, 18), PackedInt32Array(18, 21, 13), PackedInt32Array(18, 13, 19)]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0hdw"]
 albedo_color = Color(0.286275, 1, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1a1cv"]
 albedo_color = Color(0.286275, 1, 1, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rtqnt"]
-albedo_color = Color(0.286275, 1, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cmcx"]
-albedo_color = Color(0.286275, 1, 1, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53ab4"]
 albedo_color = Color(0.286275, 1, 1, 1)
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_j4cq3")
+
+[node name="Home" type="Marker3D" parent="."]
+transform = Transform3D(0.299173, 0, 0, 0, 0.299173, 0, 0, 0, 0.299173, 0, 4.66344, 2.46061)
 
 [node name="Player" parent="." instance=ExtResource("1_uqokv")]
+transform = Transform3D(0.299173, 0, 0, 0, 0.299173, 0, 0, 0, 0.299173, -13.6012, 0.721227, -20.3192)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 10.3408, 9.83246, 14.7727)
-light_energy = 0.2
+visible = false
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1nn37")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(20, 0, 0, 0, 1.874, 0, 0, 0, 20, 0, 0, 0)
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_beyeb")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(20, 0, 0, 0, 1.874, 0, 0, 0, 20, -16.9385, 0, -13.7012)
 use_collision = true
-size = Vector3(1, 0.002, 1)
+size = Vector3(2.69385, 0.002, 2.37012)
 material = SubResource("StandardMaterial3D_s0hdw")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(21.8163, 0, 0, 0, 1.42193, 0, 0, 0, 0.541017, 0.112164, 0.737482, 9.72407)
 use_collision = true
 collision_layer = 3
@@ -56,33 +64,32 @@ collision_mask = 3
 size = Vector3(0.906982, 1, 1)
 material = SubResource("StandardMaterial3D_1a1cv")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(-9.53619e-07, 0, 0.541017, 0, 1.42193, 0, -21.8163, 0, -2.36486e-08, -9.74505, 0.716357, 0.336907)
-use_collision = true
-collision_layer = 3
-collision_mask = 3
-size = Vector3(0.880371, 1, 1)
-material = SubResource("StandardMaterial3D_rtqnt")
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(-21.8161, -2.18037e-10, -0.00189789, 3.34529e-09, 1.42193, -4.72971e-08, 0.0765314, -1.24308e-07, -0.541014, -0.0700216, 0.737482, -9.76691)
-use_collision = true
-size = Vector3(0.906982, 1, 1)
-material = SubResource("StandardMaterial3D_2cmcx")
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(0.0765323, -2.18037e-10, -0.541014, 1.90723e-06, 1.42193, 8.29613e-11, 21.8161, -1.24308e-07, 0.00189791, 9.82123, 0.847919, -0.0814951)
 use_collision = true
 size = Vector3(0.910889, 1, 1)
 material = SubResource("StandardMaterial3D_53ab4")
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.354674, 1.28263, 2.4258)
 use_collision = true
 collision_layer = 3
 collision_mask = 3
 size = Vector3(3.47803, 3.06104, 1)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.32974, -0.194977, 0)
+[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.145485, 1.52705, 6.34999)
 use_collision = true
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("waypoints") instance=ExtResource("3_di7yc")]
+transform = Transform3D(0.508425, 0, -0.861106, 0, 1, 0, 0.861106, 0, 0.508425, -5.07881, 1.57088, -2.9504)
+waypoints = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("../Marker3D3")]
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.24587, 1.01764, 5.93192)
+
+[node name="Marker3D2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97316, 0.954262, 6.32846)
+
+[node name="Marker3D3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00065, 0.954262, -3.04971)

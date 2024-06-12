@@ -17,6 +17,7 @@ var speed = WALK_SPEED
 @onready var camera = $Head2/Camera3D
 @onready var ray = $Head2/Camera3D/RayCast3D
 @onready var marker = $Head2/Camera3D/Marker3D
+@onready var home = $"../Home"
 
 enum{
 	ACT,
@@ -111,7 +112,8 @@ func on_gesture_classified(gesture_name : StringName):
 	if gesture_name == "Time":
 		print("za warudo")
 		speed = 100
-		
+	elif gesture_name == "Tele":
+		self.global_position = home.global_position
 		#new_rune.setup(ray.get_collision_point(), ray.get_collision_normal())
 	
 		
@@ -119,6 +121,7 @@ func on_gesture_classified(gesture_name : StringName):
 func _spawn_rune(position : Vector3, normal: Vector3, gesture_name: String) -> void:
 	var new_rune = RUNE.instantiate()
 	new_rune.texture_albedo = load("res://images/%s.png" % gesture_name)
+	new_rune.texture_emission = load("res://images/%s.png" % gesture_name)
 	get_tree().get_root().add_child(new_rune)
 	new_rune.global_position = position
 	new_rune.look_at((new_rune.global_transform.origin + normal), Vector3.UP)
