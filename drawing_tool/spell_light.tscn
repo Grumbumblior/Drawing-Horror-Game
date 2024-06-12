@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3evmb33q430y"]
+
+[ext_resource type="Script" path="res://spell_light.gd" id="1_htnl8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ipfur"]
+
+[node name="SpellLight" type="OmniLight3D"]
+script = ExtResource("1_htnl8")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("SphereShape3D_ipfur")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(10.0238, 0, 0, 0, 10.0238, 0, 0, 0, 10.0238, 0, 0, 0)
+visible = false
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

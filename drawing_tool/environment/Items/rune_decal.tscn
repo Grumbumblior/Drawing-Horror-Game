@@ -6,3 +6,6 @@ emission_energy = 10.0
 modulate = Color(1, 0, 0, 1)
 upper_fade = 0.000162535
 lower_fade = 1e-05
+distance_fade_enabled = true
+distance_fade_begin = 5.0
+distance_fade_length = 5.0

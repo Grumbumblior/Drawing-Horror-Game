@@ -9,9 +9,12 @@ const SENSITIVITY = 0.003
 const BOB_FREQ = 2.0
 const BOB_AMP = 0.08
 
+const SPELLIGHT = preload("res://spell_light.tscn")
 const RUNE = preload("res://environment/Items/rune_decal.tscn")
 var t_bob = 0.0
 var speed = WALK_SPEED
+
+var spells_dict = {"Eye" : 0, "Time" : 0, "Tele" : 0, "Light" : 0}
 
 var G = GameManager
 @onready var gestures = $GestureNode
@@ -31,6 +34,7 @@ var state = ACT
 func _ready():
 	G.game_won.connect(_on_game_won)
 	gestures.gesture_classified.connect(on_gesture_classified)
+	GameManager.spell_collected.connect(_on_spell_collected)
 	
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and state != DRAW:
@@ -92,7 +96,7 @@ func draw_state():
 	
 func _on_gesture_node_draw_sent(stroke) -> void:
 	var new_rune = RUNE.instantiate()
-	print(stroke)
+	#print(stroke)
 	new_rune.texture_albedo = stroke.get_texture()
 	get_tree().get_root().add_child(new_rune)
 	new_rune.global_position = marker.global_position
@@ -112,12 +116,8 @@ func on_gesture_classified(gesture_name : StringName):
 	#get_tree().get_root().add_child(new_rune)
 	#new_rune.global_transform.origin = ray.get_collision_point()
 	#new_rune.look_at(ray.get_collision_normal())
-	if gesture_name == "Time":
-		print("za warudo")
-		speed = 100
-	elif gesture_name == "Tele":
-		self.global_position = home.global_position
-		#new_rune.setup(ray.get_collision_point(), ray.get_collision_normal())
+	if gesture_name in spells_dict && spells_dict[gesture_name] > 0:
+		cast_spell(gesture_name)
 	state = ACT
 	
 func check_valid_rune(gesture_name):
@@ -138,6 +138,23 @@ func _spawn_rune(position : Vector3, normal: Vector3, gesture_name: String) -> v
 	new_rune.look_at((new_rune.global_transform.origin + normal), Vector3.UP)
 	new_rune.rotate_object_local(Vector3(1,0,0), 90)
 	new_rune.rotate_object_local(Vector3(0,0,1), deg_to_rad(180))
+	
+func cast_spell(spell):
+	print(spell)
+	if spell == "Time":
+		print("za warudo")
+	elif spell == "Tele":
+		print("zap")
+		self.global_position = home.global_position
+	elif spell == "Light":
+		var new_light = SPELLIGHT.instantiate()
+		get_tree().get_root().add_child(new_light)
+		
+		new_light.global_position = self.global_position
+
+func _on_spell_collected(spell):
+	spells_dict[spell] = spells_dict[spell] + 1
+	print(spells_dict)
 	
 func _on_game_won():
 	print("won")

@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 @export var waypoints : Array[Marker3D]
-@export var patrolSpeed =2
+@export var patrolSpeed = 2
 @export var chaseSpeed = 3
 
 enum {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bgvpmhc5kqmfk"]
+[gd_scene load_steps=21 format=3 uid="uid://bgvpmhc5kqmfk"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_j4cq3"]
 [ext_resource type="PackedScene" uid="uid://c3b5ki3ke7o61" path="res://player/player.tscn" id="1_uqokv"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://ckd5wtqckylyc" path="res://textures/Ground Stones/GroundStones_Normal.jpg" id="7_wrrpy"]
 [ext_resource type="Texture2D" uid="uid://w7k25wxc7t7p" path="res://textures/Ground Stones/GroundStones_Roughness.jpg" id="8_0cfps"]
 [ext_resource type="PackedScene" uid="uid://btrtinkfcd7pt" path="res://environment/Items/runestone.tscn" id="9_wdj1s"]
+[ext_resource type="Script" path="res://environment/Items/runestone.gd" id="10_froo0"]
+[ext_resource type="PackedScene" uid="uid://d32en3u3sradd" path="res://environment/Items/spellstone.tscn" id="11_0deos"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ak3sl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -121,14 +123,22 @@ use_collision = true
 
 [node name="Runestone" parent="NavigationRegion3D" instance=ExtResource("9_wdj1s")]
 transform = Transform3D(-4.37114e-08, 0, 0.402021, 0, 1.6897, 0, -1, 0, -1.75729e-08, -21.3424, 0.818823, -17.4208)
+script = ExtResource("10_froo0")
+rune_num = 0
 
 [node name="Runestone2" parent="NavigationRegion3D" instance=ExtResource("9_wdj1s")]
 transform = Transform3D(-4.37114e-08, 0, 0.402021, 0, 1.6897, 0, -1, 0, -1.75729e-08, -21.3424, 0.818823, -18.9325)
-runeNum = 1
+script = ExtResource("10_froo0")
+rune_num = 1
 
 [node name="Runestone3" parent="NavigationRegion3D" instance=ExtResource("9_wdj1s")]
 transform = Transform3D(-4.37114e-08, 0, 0.402021, 0, 1.6897, 0, -1, 0, -1.75729e-08, -21.3424, 0.818823, -20.6173)
-runeNum = 2
+script = ExtResource("10_froo0")
+rune_num = 2
+
+[node name="Spellstone" parent="NavigationRegion3D" instance=ExtResource("11_0deos")]
+transform = Transform3D(-4.37114e-08, 0, -0.402021, 0, 1.6897, 0, 1, 0, -1.75729e-08, -7.55135, 0.818823, -20.3032)
+spell = "Light"
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("waypoints") instance=ExtResource("3_di7yc")]
 transform = Transform3D(0.508425, 0, -0.861106, 0, 1, 0, 0.861106, 0, 0.508425, -5.07881, 1.57088, -2.9504)

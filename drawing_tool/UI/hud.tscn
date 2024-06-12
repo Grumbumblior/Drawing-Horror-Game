@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0dqnydg11xhd"]
+[gd_scene load_steps=6 format=3 uid="uid://c0dqnydg11xhd"]
 
 [ext_resource type="Script" path="res://UI/hud.gd" id="1_i8tqd"]
+[ext_resource type="Texture2D" uid="uid://bsad4kg6ynwdh" path="res://images/Light.png" id="2_pp2gk"]
+[ext_resource type="Texture2D" uid="uid://d06q7vkfh2qpj" path="res://images/Tele.png" id="3_7xlh8"]
+[ext_resource type="Texture2D" uid="uid://bydn230gtyry" path="res://images/Time.png" id="4_xg85v"]
+[ext_resource type="Texture2D" uid="uid://n6k8tqpqcvxc" path="res://images/Eye.png" id="5_0tk8t"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -34,6 +38,46 @@ offset_left = 100.0
 offset_right = 140.0
 offset_bottom = 40.0
 scale = Vector2(1.01037, 1.02778)
+expand_mode = 1
+
+[node name="Spells" type="Node" parent="."]
+
+[node name="Light" type="TextureRect" parent="Spells"]
+visible = false
+offset_left = 1000.0
+offset_top = 5.0
+offset_right = 1040.0
+offset_bottom = 45.0
+texture = ExtResource("2_pp2gk")
+expand_mode = 1
+
+[node name="Teleport" type="TextureRect" parent="Spells"]
+visible = false
+offset_left = 1050.0
+offset_top = 5.0
+offset_right = 1090.0
+offset_bottom = 45.0
+texture = ExtResource("3_7xlh8")
+expand_mode = 1
+
+[node name="Time" type="TextureRect" parent="Spells"]
+visible = false
+offset_left = 1110.0
+offset_top = 5.0
+offset_right = 1150.0
+offset_bottom = 45.0
+scale = Vector2(1.01037, 1.02778)
+texture = ExtResource("4_xg85v")
+expand_mode = 1
+
+[node name="Eye" type="TextureRect" parent="Spells"]
+visible = false
+offset_left = 940.0
+offset_top = 6.0
+offset_right = 980.0
+offset_bottom = 46.0
+scale = Vector2(1.01037, 1.02778)
+texture = ExtResource("5_0tk8t")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="."]

@@ -12,6 +12,7 @@ var castRunes = []
 
 signal game_won
 signal rune_collected(runeNum : int)
+signal spell_collected(spell: String)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	runeSequence = []
@@ -23,6 +24,9 @@ func _ready() -> void:
 func collect_rune(runeNum : int):
 	#self.runeNum = runeNum
 	emit_signal("rune_collected", runeNum)
+
+func collect_spell(spell : String):
+	emit_signal("spell_collected", spell)
 
 func check_won():
 	if castRunes == runeSequence:
