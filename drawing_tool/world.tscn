@@ -134,11 +134,11 @@ runeNum = 2
 transform = Transform3D(0.508425, 0, -0.861106, 0, 1, 0, 0.861106, 0, 0.508425, -5.07881, 1.57088, -2.9504)
 waypoints = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("../Marker3D3")]
 
-[node name="Marker3D" type="Marker3D" parent="."]
+[node name="Marker3D" type="Marker3D" parent="." groups=["EnemyWaypoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.24587, 1.01764, 5.93192)
 
-[node name="Marker3D2" type="Marker3D" parent="."]
+[node name="Marker3D2" type="Marker3D" parent="." groups=["EnemyWaypoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97316, 0.954262, 6.32846)
 
-[node name="Marker3D3" type="Marker3D" parent="."]
+[node name="Marker3D3" type="Marker3D" parent="." groups=["EnemyWaypoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00065, 0.954262, -3.04971)

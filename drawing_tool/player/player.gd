@@ -16,9 +16,9 @@ var speed = WALK_SPEED
 var G = GameManager
 @onready var gestures = $GestureNode
 @onready var head = $Head2
-@onready var camera = $Head2/Camera3D
-@onready var ray = $Head2/Camera3D/RayCast3D
-@onready var marker = $Head2/Camera3D/Marker3D
+@onready var camera = $Head2/Camera3d
+@onready var ray = $Head2/Camera3d/RayCast3D
+@onready var marker = $Head2/Camera3d/Marker3D
 @onready var home = $"../Home"
 
 enum{

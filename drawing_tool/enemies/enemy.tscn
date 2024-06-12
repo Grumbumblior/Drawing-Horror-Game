@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8w1bgk3il3op"]
+[gd_scene load_steps=14 format=3 uid="uid://b8w1bgk3il3op"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_jnkpe"]
 [ext_resource type="Texture2D" uid="uid://d08u63gf0bw8y" path="res://images/cricket_angry.png" id="2_jbg2r"]
@@ -16,6 +16,9 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 [sub_resource type="SphereShape3D" id="SphereShape3D_yg8qy"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q4sjo"]
+points = PackedVector3Array(0, -3, 0, 7.5, -3, -6, -7.5, -3, -6, -7.5, 3, -6, 7.5, 3, -6, 0, 3, 0)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_oboy3"]
 points = PackedVector3Array(0, -3, 0, 7.5, -3, -6, -7.5, -3, -6, -7.5, 3, -6, 7.5, 3, -6, 0, 3, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_373ll"]
@@ -45,9 +48,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Enemy" type="CharacterBody3D" node_paths=PackedStringArray("waypoints")]
+[node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_jnkpe")
-waypoints = [null]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
@@ -78,10 +80,16 @@ shape = SubResource("SphereShape3D_yh6he")
 transform = Transform3D(11.3104, 0, 0, 0, 11.3104, 0, 0, 0, 11.3104, 0, 0, 0)
 shape = SubResource("SphereShape3D_yg8qy")
 
-[node name="Sight" type="Area3D" parent="."]
+[node name="SightClose" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Sight"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SightClose"]
 shape = SubResource("ConvexPolygonShape3D_q4sjo")
+
+[node name="SightFar" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SightFar"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_oboy3")
 
 [node name="Head" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.559574, 0)
@@ -98,5 +106,8 @@ autoplay = "Idle"
 [connection signal="body_exited" from="HearingFar" to="." method="_on_hearing_far_body_exited"]
 [connection signal="body_entered" from="HearingClose" to="." method="_on_hearing_close_body_entered"]
 [connection signal="body_exited" from="HearingClose" to="." method="_on_hearing_close_body_exited"]
-[connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
-[connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]
+[connection signal="body_entered" from="SightClose" to="." method="_on_sight_close_body_entered"]
+[connection signal="body_entered" from="SightClose" to="." method="_on_sight_body_entered"]
+[connection signal="body_exited" from="SightClose" to="." method="_on_sight_body_exited"]
+[connection signal="body_entered" from="SightFar" to="." method="_on_sight_body_entered"]
+[connection signal="body_exited" from="SightFar" to="." method="_on_sight_body_exited"]

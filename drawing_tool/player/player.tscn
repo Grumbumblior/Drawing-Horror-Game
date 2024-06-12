@@ -27,18 +27,18 @@ shape = SubResource("ConvexPolygonShape3D_uru74")
 [node name="Head2" type="Node3D" parent="."]
 transform = Transform3D(0.911592, 0, 0, 0, 0.911592, 0, 0, 0, 0.911592, 0, 2.34799, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Head2"]
+[node name="Camera3d" type="Camera3D" parent="Head2"]
 
-[node name="RayCast3D" type="RayCast3D" parent="Head2/Camera3D"]
+[node name="RayCast3D" type="RayCast3D" parent="Head2/Camera3d"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.200279)
 target_position = Vector3(0, 0, -0.5)
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 0, 0.717647, 1)
 
-[node name="Marker3D" type="Marker3D" parent="Head2/Camera3D"]
+[node name="Marker3D" type="Marker3D" parent="Head2/Camera3d"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.721898)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Head2/Camera3D"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Head2/Camera3d"]
 light_color = Color(1, 0.788235, 0.627451, 1)
 light_energy = 0.1
 omni_range = 3.0

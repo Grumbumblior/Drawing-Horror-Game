@@ -34,7 +34,11 @@ func _process(delta: float) -> void:
 	match state:
 		PATROL:
 			animation.animation = "Idle"
-			patrol_state()
+			if navigationAgent.is_navigation_finished():
+				state = WAIT
+				patrolTimer.start()
+				return
+			move_towards_point(patrolSpeed)
 		CHASE:
 			animation.animation = "Chase"
 			if navigationAgent.is_navigation_finished():
@@ -55,11 +59,7 @@ func face_direction(direction : Vector3):
 	look_at(Vector3(direction.x, global_position.y, direction.z), Vector3.UP)
 	
 func patrol_state():
-	if navigationAgent.is_navigation_finished():
-		state = WAIT
-		patrolTimer.start()
-		return
-	move_towards_point(patrolSpeed)
+	pass
 
 func move_towards_point(speed):
 	var targetPos = navigationAgent.get_next_path_position()
@@ -74,11 +74,11 @@ func move_towards_point(speed):
 	pass
 
 func check_for_player():
-	var space_state = get_world_3d().direct_space_state
-	var result = space_state.intersect_ray(PhysicsRayQueryParameters3D.create($Head.global_position, player.get_node("Head2/Camera3D").global_position, 1, [self]))
-	if result.size() > 0:
-		print(result)
-		if result["collider"].is_in_group("Player"):
+	#var space_state = get_world_3d().direct_space_state
+	#var result = space_state.intersect_ray(PhysicsRayQueryParameters3D.create($Head.global_position, player.get_node("Head2/Camera3D").global_position, 1, [self]))
+	#if result.size() > 0:
+		#print(result)
+		#if result["collider"].is_in_group("Player"):
 			if(playerInEarshotClose):
 				print("chase")
 				state = CHASE
