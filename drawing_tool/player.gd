@@ -27,6 +27,7 @@ enum{
 var state = ACT
 
 func _ready():
+	GameManager.game_won.connect(_on_game_won)
 	gestures.gesture_classified.connect(on_gesture_classified)
 	
 func _unhandled_input(event):
@@ -95,6 +96,9 @@ func _on_gesture_node_draw_sent(stroke) -> void:
 	new_rune.global_position = marker.global_position
 
 func on_gesture_classified(gesture_name : StringName):
+	if gesture_name in GameManager.allRunes:
+		GameManager.castRunes.append(gesture_name.replace("&", ""))
+	print(GameManager.castRunes)
 	var space_state = get_world_3d().direct_space_state
 	var screen_center = get_viewport().size/2
 	var origin = camera.project_ray_origin(screen_center)
@@ -126,3 +130,7 @@ func _spawn_rune(position : Vector3, normal: Vector3, gesture_name: String) -> v
 	new_rune.global_position = position
 	new_rune.look_at((new_rune.global_transform.origin + normal), Vector3.UP)
 	new_rune.rotate_object_local(Vector3(1,0,0), 90)
+	
+func _on_game_won():
+	print("won")
+	pass

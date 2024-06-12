@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 				state = WAIT
 			move_towards_point(patrolSpeed)
 		WAIT:
-			animation.animation = "Idle"
+			animation.animation = "Idle" 
 			pass
 func face_direction(direction : Vector3):
 	look_at(Vector3(direction.x, global_position.y, direction.z), Vector3.UP)

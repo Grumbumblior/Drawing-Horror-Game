@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgvpmhc5kqmfk"]
+[gd_scene load_steps=12 format=3 uid="uid://bgvpmhc5kqmfk"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_j4cq3"]
 [ext_resource type="PackedScene" uid="uid://c3b5ki3ke7o61" path="res://player.tscn" id="1_uqokv"]
+[ext_resource type="PackedScene" uid="uid://c0dqnydg11xhd" path="res://hud.tscn" id="3_5lixg"]
 [ext_resource type="PackedScene" uid="uid://b8w1bgk3il3op" path="res://enemy.tscn" id="3_di7yc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ak3sl"]
@@ -39,6 +40,12 @@ transform = Transform3D(0.299173, 0, 0, 0, 0.299173, 0, 0, 0, 0.299173, 0, 4.663
 [node name="Player" parent="." instance=ExtResource("1_uqokv")]
 transform = Transform3D(0.299173, 0, 0, 0, 0.299173, 0, 0, 0, 0.299173, -13.6012, 0.721227, -20.3192)
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="Player"]
+layer = 0
+
+[node name="HUD" parent="Player/CanvasLayer2" instance=ExtResource("3_5lixg")]
+scale = Vector2(1, 1.01754)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 10.3408, 9.83246, 14.7727)
 visible = false
@@ -72,6 +79,13 @@ material = SubResource("StandardMaterial3D_53ab4")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.354674, 1.28263, 2.4258)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(3.47803, 3.06104, 1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.059, 1.28263, -22.925)
 use_collision = true
 collision_layer = 3
 collision_mask = 3

@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 QPointCloudRecognizer="*res://q_recognizer/q_point_cloud_recognizer.gd"
+GameManager="*res://game_manager.gd"
 
 [editor_plugins]
 
