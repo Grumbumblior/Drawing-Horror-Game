@@ -1,0 +1,26 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcw11yagqqtg4"]
+
+[ext_resource type="Texture2D" uid="uid://dt3qu4po8ugdn" path="res://textures/Ground Stones/GroundStones_Height.jpg" id="1_qm2js"]
+[ext_resource type="Texture2D" uid="uid://t00hlrdb2r4h" path="res://textures/GroundStones_Ambient Occlusion.jpg" id="2_rn1sx"]
+[ext_resource type="Texture2D" uid="uid://dwhilb1c1qp26" path="res://textures/Ground Stones/GroundStones_Metallic.jpg" id="3_yxn4i"]
+[ext_resource type="Texture2D" uid="uid://ckd5wtqckylyc" path="res://textures/Ground Stones/GroundStones_Normal.jpg" id="4_0hmax"]
+[ext_resource type="Texture2D" uid="uid://w7k25wxc7t7p" path="res://textures/Ground Stones/GroundStones_Roughness.jpg" id="5_7ks6y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tpt6l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0o2v8"]
+albedo_texture = ExtResource("1_qm2js")
+metallic = 1.0
+metallic_texture = ExtResource("3_yxn4i")
+roughness_texture = ExtResource("5_7ks6y")
+normal_enabled = true
+normal_texture = ExtResource("4_0hmax")
+ao_enabled = true
+ao_texture = ExtResource("2_rn1sx")
+heightmap_enabled = true
+heightmap_texture = ExtResource("1_qm2js")
+
+[node name="Node3D" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 2.03759, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_tpt6l")
+surface_material_override/0 = SubResource("StandardMaterial3D_0o2v8")

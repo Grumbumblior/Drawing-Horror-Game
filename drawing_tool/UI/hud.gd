@@ -4,7 +4,9 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.game_won.connect(_on_game_won)
+	GameManager.game_lost.connect(_on_game_lost)
 	GameManager.rune_collected.connect(_on_rune_collected)
+	#GameManager.rune_collected.connect(_on_spell_collected)
 	var i = 0
 	for N in $RunePics.get_children():
 		N.texture = load("res://images/%s.png" % GameManager.runeSequence[i])
@@ -23,4 +25,9 @@ func _on_rune_collected(runeNum):
 	runePics[runeNum].visible = true
 
 func _on_game_won():
-	$Label.visible = true
+	label.text = "You Win! You Beat Cricket! Be proud."
+	label.visible = true
+
+func _on_game_lost():
+	label.text = "You have been devoured by Cricket."
+	label.visible = true

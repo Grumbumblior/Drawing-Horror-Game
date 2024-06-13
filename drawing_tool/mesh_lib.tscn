@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=4 uid="uid://ce6h52f7ab1pf"]
+
+[ext_resource type="Texture2D" uid="uid://dt3qu4po8ugdn" path="res://textures/Ground Stones/GroundStones_Height.jpg" id="1_l7ipf"]
+[ext_resource type="Texture2D" uid="uid://t00hlrdb2r4h" path="res://textures/GroundStones_Ambient Occlusion.jpg" id="2_0pklf"]
+[ext_resource type="Texture2D" uid="uid://dwhilb1c1qp26" path="res://textures/Ground Stones/GroundStones_Metallic.jpg" id="3_vijpb"]
+[ext_resource type="Texture2D" uid="uid://ckd5wtqckylyc" path="res://textures/Ground Stones/GroundStones_Normal.jpg" id="4_ddpwi"]
+[ext_resource type="Texture2D" uid="uid://w7k25wxc7t7p" path="res://textures/Ground Stones/GroundStones_Roughness.jpg" id="5_r3k81"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n1ybq"]
+resource_name = "Material"
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 1)
+emission_enabled = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wa267"]
+_surfaces = [{
+"aabb": AABB(-0.01, -0.01, 0, 0.02, 0.02001, 0.02001),
+"format": 34359742465,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAAAAMAAwAFAAQABgAEAAUABQAHAAYAAQAGAAcABwACAAEABwAFAAMAAwACAAcAAQAAAAQABAAGAAEA"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("CtcjvArXIzwK16M8CtcjvArXI7wK16M8CtcjvArXI7wAAAAACtcjvArXIzwAAAAACtcjPArXIzwK16M8CtcjPArXIzwAAAAACtcjPArXI7wK16M8CtcjPArXI7wAAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_g3opl"]
+resource_name = "Cube_005"
+_surfaces = [{
+"aabb": AABB(-0.01, -0.01, 0, 0.02, 0.02001, 0.02001),
+"attribute_data": PackedByteArray("VBiTPYPgTz9UGJM9g+BPP1QYkz2D4E8/VBiTPYPgTz9UGJM9g+BPP1QYkz2D4E8/VBiTPYPgTz9UGJM9g+BPP1QYkz2D4E8/VBiTPYPgTz9UGJM9g+BPP1QYkz2D4E8/VBiTPYPgTz9UGJM9g+BPP1QYkz2D4E8/VBiTPYPgTz9UGJM9g+BPP1QYkz2D4E8/VBiTPYPgTz9UGJM9g+BPP1QYkz2D4E8/VBiTPYPgTz9UGJM9g+BPP1QYkz2D4E8/"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQA"),
+"material": SubResource("StandardMaterial3D_n1ybq"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("CtcjvArXIzwK16M8CtcjvArXI7wK16M8CtcjvArXI7wAAAAACtcjvArXIzwAAAAACtcjPArXIzwK16M8CtcjvArXIzwK16M8CtcjvArXIzwAAAAACtcjPArXIzwAAAAACtcjPArXI7wK16M8CtcjPArXIzwK16M8CtcjPArXIzwAAAAACtcjPArXI7wAAAAACtcjvArXI7wK16M8CtcjPArXI7wK16M8CtcjPArXI7wAAAAACtcjvArXI7wAAAAACtcjPArXI7wAAAAACtcjPArXIzwAAAAACtcjvArXIzwAAAAACtcjvArXI7wAAAAACtcjvArXI7wK16M8CtcjvArXIzwK16M8CtcjPArXIzwK16M8CtcjPArXI7wK16M8AAD/f////78AAP9/////vwAA/3////+/AAD/f////7//f///////v/9///////+//3///////7//f///////v////3////+/////f////7////9/////v////3////+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//////////v/////////+//////////7//////////v/9//3////8//3//f////z//f/9/////P/9//3////8/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_wa267")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0o2v8"]
+albedo_texture = ExtResource("1_l7ipf")
+metallic = 1.0
+metallic_texture = ExtResource("3_vijpb")
+roughness_texture = ExtResource("5_r3k81")
+normal_enabled = true
+normal_texture = ExtResource("4_ddpwi")
+ao_enabled = true
+ao_texture = ExtResource("2_0pklf")
+heightmap_enabled = true
+heightmap_texture = ExtResource("1_l7ipf")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j6is1"]
+points = PackedVector3Array(-0.01, -0.01, 7.27595e-12, 0.01, 0.01, 0.02, 0.01, -0.01, 0.02, 0.01, 0.01, 7.27595e-12, -0.01, 0.01, 0.02, -0.01, 0.01, 7.27595e-12, 0.01, -0.01, 7.27595e-12, -0.01, -0.01, 0.02)
+
+[node name="MeshLib" type="Node3D"]
+
+[node name="cube" type="Node3D" parent="."]
+
+[node name="Cube" type="MeshInstance3D" parent="cube"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("ArrayMesh_g3opl")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_0o2v8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="cube/Cube"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cube/Cube/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.42109e-14, 0, 1.42109e-14, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_j6is1")

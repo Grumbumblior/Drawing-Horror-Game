@@ -24,6 +24,7 @@ var player
 
 func _ready() -> void:
 	state = PATROL
+	GameManager.jump_scare.connect(_on_jump_scare)
 	player = get_tree().get_nodes_in_group("Player")[0]
 	patrolTimer = $PatrolTimer
 	navigationAgent = $NavigationAgent3D
@@ -137,3 +138,17 @@ func _on_sight_body_exited(body: Node3D) -> void:
 		playerInSight = false
 		print("Player has left sight")
 	pass # Replace with function body.
+
+
+func _on_killbox_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Player"):
+		body.global_position = Vector3(175, -782, 101)
+		print("game over")
+		GameManager.game_over()
+		$JumpscareTimer.start()
+
+func _on_jump_scare():
+	self.global_position = $"../Scaremarker".global_position
+
+func _on_jumpscare_timer_timeout() -> void:
+	get_tree().quit()

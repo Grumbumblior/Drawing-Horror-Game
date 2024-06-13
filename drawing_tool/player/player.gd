@@ -14,7 +14,7 @@ const RUNE = preload("res://environment/Items/rune_decal.tscn")
 var t_bob = 0.0
 var speed = WALK_SPEED
 
-var spells_dict = {"Eye" : 0, "Time" : 0, "Tele" : 0, "Light" : 0}
+@export var spells_dict = {"Eye" : 0, "Time" : 0, "Tele" : 0, "Light" : 0}
 
 var G = GameManager
 @onready var gestures = $GestureNode
@@ -154,6 +154,9 @@ func cast_spell(spell):
 
 func _on_spell_collected(spell):
 	spells_dict[spell] = spells_dict[spell] + 1
+	#for s in spells_dict:
+		#if spells_dict[s] > 0:
+			#Hud.show_spell(spells_dict[s].index)
 	print(spells_dict)
 	
 func _on_game_won():

@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://d08u63gf0bw8y" path="res://images/cricket_angry.png" id="2_jbg2r"]
 [ext_resource type="Texture2D" uid="uid://b6cakaejb3ga7" path="res://images/cricket_clear.png" id="2_o4p84"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_uw1c6"]
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pe6j1"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_iquvn"]
@@ -16,9 +18,6 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 [sub_resource type="SphereShape3D" id="SphereShape3D_yg8qy"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q4sjo"]
-points = PackedVector3Array(0, -3, 0, 7.5, -3, -6, -7.5, -3, -6, -7.5, 3, -6, 7.5, 3, -6, 0, 3, 0)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_oboy3"]
 points = PackedVector3Array(0, -3, 0, 7.5, -3, -6, -7.5, -3, -6, -7.5, 3, -6, 7.5, 3, -6, 0, 3, 0)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_373ll"]
@@ -53,6 +52,16 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_jnkpe")
 
+[node name="JumpscareTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Killbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.364159, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Killbox"]
+transform = Transform3D(2.25574, 0, 0, 0, 2.25574, 0, 0, 0, 2.25574, 0, 0, 0)
+shape = SubResource("CylinderShape3D_uw1c6")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
 mesh = SubResource("CapsuleMesh_pe6j1")
@@ -66,11 +75,13 @@ visible = false
 mesh = SubResource("CylinderMesh_kbhlc")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
 
 [node name="PatrolTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="HearingFar" type="Area3D" parent="."]
+transform = Transform3D(0.718413, 0, 0, 0, 0.718413, 0, 0, 0, 0.718413, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HearingFar"]
 transform = Transform3D(36.1453, 0, 0, 0, 36.1453, 0, 0, 0, 36.1453, 0, 0, 0)
@@ -87,12 +98,6 @@ shape = SubResource("SphereShape3D_yg8qy")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SightClose"]
 shape = SubResource("ConvexPolygonShape3D_q4sjo")
 
-[node name="SightFar" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SightFar"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_oboy3")
-
 [node name="Head" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.559574, 0)
 
@@ -103,13 +108,12 @@ sprite_frames = SubResource("SpriteFrames_pay5r")
 animation = &"Chase"
 autoplay = "Idle"
 
+[connection signal="timeout" from="JumpscareTimer" to="." method="_on_jumpscare_timer_timeout"]
+[connection signal="body_entered" from="Killbox" to="." method="_on_killbox_body_entered"]
 [connection signal="timeout" from="PatrolTimer" to="." method="_on_patrol_timer_timeout"]
 [connection signal="body_entered" from="HearingFar" to="." method="_on_hearing_far_body_entered"]
 [connection signal="body_exited" from="HearingFar" to="." method="_on_hearing_far_body_exited"]
 [connection signal="body_entered" from="HearingClose" to="." method="_on_hearing_close_body_entered"]
 [connection signal="body_exited" from="HearingClose" to="." method="_on_hearing_close_body_exited"]
-[connection signal="body_entered" from="SightClose" to="." method="_on_sight_close_body_entered"]
 [connection signal="body_entered" from="SightClose" to="." method="_on_sight_body_entered"]
 [connection signal="body_exited" from="SightClose" to="." method="_on_sight_body_exited"]
-[connection signal="body_entered" from="SightFar" to="." method="_on_sight_body_entered"]
-[connection signal="body_exited" from="SightFar" to="." method="_on_sight_body_exited"]
