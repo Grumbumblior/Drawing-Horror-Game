@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3b5ki3ke7o61"]
+[gd_scene load_steps=8 format=3 uid="uid://c3b5ki3ke7o61"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_hou0v"]
 [ext_resource type="Script" path="res://q_recognizer/gesture_node.gd" id="2_wyy8a"]
+[ext_resource type="AudioStream" uid="uid://cppk4oh38rc8u" path="res://sound/five-nights-at-freddys-full-scream-sound_2.mp3" id="3_qf50l"]
+[ext_resource type="AudioStream" uid="uid://b5iob14by0jj6" path="res://sound/prowler-audio.mp3" id="4_3o72w"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lygw4"]
 
@@ -47,5 +49,13 @@ omni_attenuation = 1.5
 
 [node name="GestureNode" type="Node2D" parent="."]
 script = ExtResource("2_wyy8a")
+
+[node name="Scream" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_qf50l")
+volume_db = 1.0
+max_distance = 5.0
+
+[node name="Scare" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_3o72w")
 
 [connection signal="draw_sent" from="GestureNode" to="." method="_on_gesture_node_draw_sent"]

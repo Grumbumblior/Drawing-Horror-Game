@@ -13,7 +13,7 @@ config_version=5
 config/name="DrawingHorrorGame"
 run/main_scene="res://world.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://images/cricket_angry.png"
 
 [autoload]
 
@@ -21,6 +21,15 @@ QPointCloudRecognizer="*res://q_recognizer/q_point_cloud_recognizer.gd"
 GameManager="*res://game_manager.gd"
 InteractionManager="*res://interaction_manager.tscn"
 Hud="*res://UI/hud.tscn"
+
+[display]
+
+window/size/mode=3
+window/size/borderless=true
+
+[editor]
+
+export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 

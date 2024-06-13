@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-@export var waypoints : Array[Marker3D]
+@onready var waypoints := get_tree().get_nodes_in_group("EnemyWaypoint")
 @export var patrolSpeed = 2
 @export var chaseSpeed = 3
 
@@ -25,9 +25,11 @@ var player
 func _ready() -> void:
 	state = PATROL
 	GameManager.jump_scare.connect(_on_jump_scare)
+	GameManager.game_won.connect(_on_game_won)
 	player = get_tree().get_nodes_in_group("Player")[0]
 	patrolTimer = $PatrolTimer
 	navigationAgent = $NavigationAgent3D
+	waypoints.shuffle()
 	navigationAgent.set_target_position(waypoints[0].global_position)
 	print(waypoints[0].global_position)
 
@@ -148,7 +150,10 @@ func _on_killbox_body_entered(body: Node3D) -> void:
 		$JumpscareTimer.start()
 
 func _on_jump_scare():
-	self.global_position = $"../Scaremarker".global_position
+	self.global_position = $"../World/Scaremarker".global_position
+
+func _on_game_won():
+	queue_free()
 
 func _on_jumpscare_timer_timeout() -> void:
 	get_tree().quit()

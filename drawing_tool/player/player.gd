@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 
-const WALK_SPEED = 3.0
-const SPRINT_SPEED = 6.0
+const WALK_SPEED = 2.0
+const SPRINT_SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.003
 
@@ -34,7 +34,9 @@ var state = ACT
 func _ready():
 	G.game_won.connect(_on_game_won)
 	gestures.gesture_classified.connect(on_gesture_classified)
-	GameManager.spell_collected.connect(_on_spell_collected)
+	G.spell_collected.connect(_on_spell_collected)
+	G.game_lost.connect(_on_game_lost)
+	G.jump_scare.connect(_on_jump_scare)
 	
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and state != DRAW:
@@ -158,7 +160,13 @@ func _on_spell_collected(spell):
 		#if spells_dict[s] > 0:
 			#Hud.show_spell(spells_dict[s].index)
 	print(spells_dict)
+
+func _on_jump_scare():
+	$Scare.play()
 	
 func _on_game_won():
 	print("won")
 	pass
+
+func _on_game_lost():
+	$Scream.play()
