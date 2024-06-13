@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://fccquu6ss56x"]
+
+[ext_resource type="Shader" path="res://static.gdshader" id="1_l6dcn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_im16a"]
+shader = ExtResource("1_l6dcn")
+shader_parameter/u_amount = 0.1
+
+[node name="Static" type="ColorRect"]
+material = SubResource("ShaderMaterial_im16a")
+use_parent_material = true
+mouse_filter = 2

@@ -7,7 +7,7 @@ const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.003
 
 const BOB_FREQ = 2.0
-const BOB_AMP = 0.08
+const BOB_AMP = 0.16
 
 const SPELLIGHT = preload("res://spell_light.tscn")
 const RUNE = preload("res://environment/Items/rune_decal.tscn")

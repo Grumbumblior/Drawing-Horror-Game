@@ -1,0 +1,132 @@
+[gd_scene load_steps=16 format=3 uid="uid://bcnmyajerit3e"]
+
+[ext_resource type="Script" path="res://tutorial_manager.gd" id="1_klyiv"]
+[ext_resource type="PackedScene" uid="uid://c3b5ki3ke7o61" path="res://player/player.tscn" id="1_wr2b2"]
+[ext_resource type="Texture2D" uid="uid://dt3qu4po8ugdn" path="res://textures/Ground Stones/GroundStones_Height.jpg" id="2_mqd8x"]
+[ext_resource type="Texture2D" uid="uid://t00hlrdb2r4h" path="res://textures/GroundStones_Ambient Occlusion.jpg" id="3_vnf3d"]
+[ext_resource type="Texture2D" uid="uid://dwhilb1c1qp26" path="res://textures/Ground Stones/GroundStones_Metallic.jpg" id="4_ipwn7"]
+[ext_resource type="Texture2D" uid="uid://ckd5wtqckylyc" path="res://textures/Ground Stones/GroundStones_Normal.jpg" id="5_6pf0c"]
+[ext_resource type="Texture2D" uid="uid://w7k25wxc7t7p" path="res://textures/Ground Stones/GroundStones_Roughness.jpg" id="6_m8tu6"]
+[ext_resource type="Texture2D" uid="uid://bqkfd5x42p0iq" path="res://images/imageedit_1_7791626557.png" id="7_wajtn"]
+[ext_resource type="Texture2D" uid="uid://bp1v1atp5nqq5" path="res://images/imageedit_4_6495034658.png" id="8_anw20"]
+[ext_resource type="PackedScene" uid="uid://btrtinkfcd7pt" path="res://environment/Items/runestone.tscn" id="8_hokux"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cc7n1"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.55, 0.54225, 0.53325, 1)
+ground_horizon_color = Color(0.55, 0.54225, 0.53325, 1)
+
+[sub_resource type="Sky" id="Sky_5ph34"]
+sky_material = SubResource("ProceduralSkyMaterial_cc7n1")
+
+[sub_resource type="Environment" id="Environment_q0ebg"]
+background_mode = 2
+sky = SubResource("Sky_5ph34")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mhrx"]
+albedo_color = Color(0.316854, 0.316815, 0.427644, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0o2v8"]
+albedo_texture = ExtResource("2_mqd8x")
+metallic = 1.0
+metallic_texture = ExtResource("4_ipwn7")
+roughness_texture = ExtResource("6_m8tu6")
+normal_enabled = true
+normal_texture = ExtResource("5_6pf0c")
+ao_enabled = true
+ao_texture = ExtResource("3_vnf3d")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_mqd8x")
+
+[node name="Tutorial" type="Node3D"]
+script = ExtResource("1_klyiv")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_q0ebg")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(3.71861, 0, 0, 0, 0.348434, 0, 0, 0, 3.71861, 0, 0, 0)
+use_collision = true
+size = Vector3(4.35319, 0.002, 4.25001)
+material = SubResource("StandardMaterial3D_6mhrx")
+
+[node name="Player" parent="." instance=ExtResource("1_wr2b2")]
+transform = Transform3D(0.299173, 0, 0, 0, 0.299173, 0, 0, 0, 0.299173, 0.208, 0, 4.505)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+transform = Transform3D(-1.82931e-07, 0, -1, 0, 2.37501, 0, 4.18498, 0, -4.37114e-08, 8.62606, 3.25466, 0.0885735)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(3.89542, 3.06104, 1)
+material = SubResource("StandardMaterial3D_0o2v8")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+transform = Transform3D(-1.82931e-07, 0, -1, 0, 2.37501, 0, 4.18498, 0, -4.37114e-08, -8.54196, 3.25466, 0.11616)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(3.88223, 3.06104, 1)
+material = SubResource("StandardMaterial3D_0o2v8")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="."]
+transform = Transform3D(4.18498, 0, -1.06581e-14, 0, 2.37501, 0, -2.98428e-13, 0, 1, -0.0834582, 3.25466, 8.49893)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4.0253, 3.06104, 1)
+material = SubResource("StandardMaterial3D_0o2v8")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="."]
+transform = Transform3D(4.18498, 0, -1.06581e-14, 0, 2.37501, 0, -2.98428e-13, 0, 1, -0.0834582, 3.25466, -8.50107)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(4.0253, 3.06104, 1)
+material = SubResource("StandardMaterial3D_0o2v8")
+
+[node name="Runestone" parent="." instance=ExtResource("8_hokux")]
+transform = Transform3D(1, 0, 0, 0, 1.6897, 0, 0, 0, 0.402021, -4.29058, 0.818823, -6.35996)
+
+[node name="Runestone2" parent="." instance=ExtResource("8_hokux")]
+transform = Transform3D(1, 0, 0, 0, 1.6897, 0, 0, 0, 0.402021, 0.000818729, 0.818823, -6.35996)
+rune_num = 1
+
+[node name="Runestone3" parent="." instance=ExtResource("8_hokux")]
+transform = Transform3D(1, 0, 0, 0, 1.6897, 0, 0, 0, 0.402021, 4.23145, 0.818823, -6.35996)
+rune_num = 2
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(3.18324, 0, 0, 0, 3.18324, 0, 0, 0, 3.18324, 0, 0, 0)
+texture_albedo = ExtResource("7_wajtn")
+texture_emission = ExtResource("7_wajtn")
+emission_energy = 5.0
+modulate = Color(0.688033, 0.101196, 0.145315, 1)
+upper_fade = 140.222
+lower_fade = 1e+06
+
+[node name="Mike" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98625, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="Mike"]
+billboard = 1
+texture = ExtResource("8_anw20")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(6.49653, 0, 0, 0, 6.49653, 0, 0, 0, 6.49653, 0, 0, 0)
+visible = false
+use_collision = true
+height = 0.971372
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="RuneTimer" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="RuneTimer" to="." method="_on_rune_timer_timeout"]

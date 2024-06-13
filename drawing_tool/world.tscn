@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bgvpmhc5kqmfk"]
+[gd_scene load_steps=18 format=3 uid="uid://bgvpmhc5kqmfk"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_j4cq3"]
 [ext_resource type="PackedScene" uid="uid://c3b5ki3ke7o61" path="res://player/player.tscn" id="1_uqokv"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://ckd5wtqckylyc" path="res://textures/Ground Stones/GroundStones_Normal.jpg" id="7_wrrpy"]
 [ext_resource type="Texture2D" uid="uid://w7k25wxc7t7p" path="res://textures/Ground Stones/GroundStones_Roughness.jpg" id="8_0cfps"]
 [ext_resource type="PackedScene" uid="uid://btrtinkfcd7pt" path="res://environment/Items/runestone.tscn" id="9_wdj1s"]
-[ext_resource type="Script" path="res://environment/Items/runestone.gd" id="10_froo0"]
 [ext_resource type="PackedScene" uid="uid://d32en3u3sradd" path="res://environment/Items/spellstone.tscn" id="11_0deos"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ak3sl"]
@@ -554,17 +553,13 @@ material = SubResource("StandardMaterial3D_0o2v8")
 
 [node name="Runestone" parent="NavigationRegion3D" instance=ExtResource("9_wdj1s")]
 transform = Transform3D(-4.37114e-08, 0, -0.402021, 0, 1.6897, 0, 1, 0, -1.75729e-08, -27.9596, 0.818823, -57.3684)
-script = ExtResource("10_froo0")
-rune_num = 0
 
 [node name="Runestone2" parent="NavigationRegion3D" instance=ExtResource("9_wdj1s")]
 transform = Transform3D(-1, 0, 3.51458e-08, 0, 1.6897, 0, -8.74228e-08, 0, -0.402021, -10.3485, 0.818823, -49.0423)
-script = ExtResource("10_froo0")
 rune_num = 1
 
 [node name="Runestone3" parent="NavigationRegion3D" instance=ExtResource("9_wdj1s")]
 transform = Transform3D(-0.393011, 0, -0.369672, 0, 1.6897, 0, 0.919534, 0, -0.157999, 4.86076, 0.797512, 6.02419)
-script = ExtResource("10_froo0")
 rune_num = 2
 
 [node name="Spellstone" parent="NavigationRegion3D" instance=ExtResource("11_0deos")]

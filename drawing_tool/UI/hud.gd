@@ -1,6 +1,8 @@
 extends Control
 @onready var runePics : Array = []
 @onready var label = %Label
+@onready var message = $CricketMessage
+@onready var animation = $AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.game_won.connect(_on_game_won)
@@ -23,7 +25,7 @@ func _process(delta: float) -> void:
 
 func _on_rune_collected(runeNum):
 	runePics[runeNum].visible = true
-
+	
 func _on_game_won():
 	label.text = "You Win! You Beat Cricket! Be proud."
 	label.visible = true
@@ -31,3 +33,14 @@ func _on_game_won():
 func _on_game_lost():
 	label.text = "You have been devoured by Cricket."
 	label.visible = true
+
+func tutorial_message(text):
+	print("playing message")
+	message.text = text
+	animation.play("Fadein")
+
+func show_cricket_message():
+	message.show()
+
+func hide_cricket_message():
+	message.hide()
