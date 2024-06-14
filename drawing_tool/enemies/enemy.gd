@@ -30,8 +30,10 @@ func _ready() -> void:
 	patrolTimer = $PatrolTimer
 	navigationAgent = $NavigationAgent3D
 	waypoints.shuffle()
+	print(waypoints)
 	navigationAgent.set_target_position(waypoints[0].global_position)
 	print(waypoints[0].global_position)
+
 
 func _process(delta: float) -> void:
 	match state:
@@ -58,9 +60,11 @@ func _process(delta: float) -> void:
 		WAIT:
 			animation.animation = "Idle" 
 			pass
+
 func face_direction(direction : Vector3):
 	look_at(Vector3(direction.x, global_position.y, direction.z), Vector3.UP)
-	
+
+
 func patrol_state():
 	pass
 
@@ -92,6 +96,7 @@ func check_for_player():
 				print("hunt")
 				state = HUNT
 				navigationAgent.set_target_position(player.global_position)
+
 func _on_patrol_timer_timeout() -> void:
 	state = PATROL
 	waypointIndex += 1

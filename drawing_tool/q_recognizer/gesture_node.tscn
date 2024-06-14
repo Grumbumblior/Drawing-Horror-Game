@@ -4,6 +4,6 @@
 
 [node name="Gesture" type="Node2D"]
 script = ExtResource("1_tn7ho")
-gesture_name = &"Fehu"
-gesture_filename = "fehu_1"
+gesture_name = &"Naudiz"
+gesture_filename = "naudiz_3"
 create_new_gesture = true

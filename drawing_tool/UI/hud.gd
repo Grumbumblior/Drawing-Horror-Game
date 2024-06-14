@@ -1,22 +1,29 @@
 extends Control
-@onready var runePics : Array = []
+@onready var runePics : Array
 @onready var label = %Label
 @onready var message = $CricketMessage
 @onready var animation = $AnimationPlayer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.game_won.connect(_on_game_won)
 	GameManager.game_lost.connect(_on_game_lost)
 	GameManager.rune_collected.connect(_on_rune_collected)
+	GameManager.runes_shuffled.connect(set_runes)
 	#GameManager.rune_collected.connect(_on_spell_collected)
-	var i = 0
-	for N in $RunePics.get_children():
-		N.texture = load("res://images/%s.png" % GameManager.runeSequence[i])
-		runePics.append(N)
-		i = i + 1
+	#set_runes()
 
 func get_label():
 	return label
+
+func set_runes():
+	runePics = []
+	var i = 0
+	for N in $RunePics.get_children():
+		N.visible = false
+		N.texture = load("res://images/%s.png" % GameManager.runeSequence[i])
+		runePics.append(N)
+		i = i + 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

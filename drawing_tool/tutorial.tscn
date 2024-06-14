@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bcnmyajerit3e"]
+[gd_scene load_steps=22 format=3 uid="uid://bcnmyajerit3e"]
 
 [ext_resource type="Script" path="res://tutorial_manager.gd" id="1_klyiv"]
 [ext_resource type="PackedScene" uid="uid://c3b5ki3ke7o61" path="res://player/player.tscn" id="1_wr2b2"]
@@ -10,20 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bqkfd5x42p0iq" path="res://images/imageedit_1_7791626557.png" id="7_wajtn"]
 [ext_resource type="Texture2D" uid="uid://bp1v1atp5nqq5" path="res://images/imageedit_4_6495034658.png" id="8_anw20"]
 [ext_resource type="PackedScene" uid="uid://btrtinkfcd7pt" path="res://environment/Items/runestone.tscn" id="8_hokux"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cc7n1"]
-sky_top_color = Color(0, 0, 0, 1)
-sky_horizon_color = Color(0.55, 0.54225, 0.53325, 1)
-ground_horizon_color = Color(0.55, 0.54225, 0.53325, 1)
-
-[sub_resource type="Sky" id="Sky_5ph34"]
-sky_material = SubResource("ProceduralSkyMaterial_cc7n1")
-
-[sub_resource type="Environment" id="Environment_q0ebg"]
-background_mode = 2
-sky = SubResource("Sky_5ph34")
-tonemap_mode = 2
-glow_enabled = true
+[ext_resource type="AudioStream" uid="uid://d253ra5btshlt" path="res://sound/mike_scream.mp3" id="11_dmrhf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mhrx"]
 albedo_color = Color(0.316854, 0.316815, 0.427644, 1)
@@ -40,11 +27,134 @@ ao_texture = ExtResource("3_vnf3d")
 heightmap_enabled = true
 heightmap_texture = ExtResource("2_mqd8x")
 
+[sub_resource type="Animation" id="Animation_xe6vh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mike:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.83066, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Decal:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.688033, 0.101196, 0.145315, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mike/Sprite3D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yywgc"]
+resource_name = "kill_mike"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Decal:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.688033, 0.101196, 0.145315, 1), Color(0, 0.145098, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mike/Sprite3D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.996),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"kill_message"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_v6hxm"]
+resource_name = "spawn_mike"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mike:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.83066, 0), Vector3(0, 2.71572, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bdpku"]
+_data = {
+"RESET": SubResource("Animation_xe6vh"),
+"kill_mike": SubResource("Animation_yywgc"),
+"spawn_mike": SubResource("Animation_v6hxm")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_j4oai"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ak3sl"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_oa3sj"]
+sky_material = SubResource("ProceduralSkyMaterial_ak3sl")
+
+[sub_resource type="Environment" id="Environment_1nn37"]
+background_mode = 1
+background_color = Color(0.0728426, 0.0728426, 0.0728426, 1)
+sky = SubResource("Sky_oa3sj")
+tonemap_mode = 2
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
+volumetric_fog_albedo = Color(0.363112, 0.0347508, 0.136552, 1)
+adjustment_enabled = true
+adjustment_contrast = 1.2
+adjustment_saturation = 1.5
+
 [node name="Tutorial" type="Node3D"]
 script = ExtResource("1_klyiv")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_q0ebg")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(3.71861, 0, 0, 0, 0.348434, 0, 0, 0, 3.71861, 0, 0, 0)
@@ -87,14 +197,17 @@ collision_mask = 3
 size = Vector3(4.0253, 3.06104, 1)
 material = SubResource("StandardMaterial3D_0o2v8")
 
-[node name="Runestone" parent="." instance=ExtResource("8_hokux")]
+[node name="Stones" type="Node3D" parent="."]
+visible = false
+
+[node name="Runestone" parent="Stones" instance=ExtResource("8_hokux")]
 transform = Transform3D(1, 0, 0, 0, 1.6897, 0, 0, 0, 0.402021, -4.29058, 0.818823, -6.35996)
 
-[node name="Runestone2" parent="." instance=ExtResource("8_hokux")]
+[node name="Runestone2" parent="Stones" instance=ExtResource("8_hokux")]
 transform = Transform3D(1, 0, 0, 0, 1.6897, 0, 0, 0, 0.402021, 0.000818729, 0.818823, -6.35996)
 rune_num = 1
 
-[node name="Runestone3" parent="." instance=ExtResource("8_hokux")]
+[node name="Runestone3" parent="Stones" instance=ExtResource("8_hokux")]
 transform = Transform3D(1, 0, 0, 0, 1.6897, 0, 0, 0, 0.402021, 4.23145, 0.818823, -6.35996)
 rune_num = 2
 
@@ -108,25 +221,50 @@ upper_fade = 140.222
 lower_fade = 1e+06
 
 [node name="Mike" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98625, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.83066, 0)
 
 [node name="Sprite3D" type="Sprite3D" parent="Mike"]
 billboard = 1
 texture = ExtResource("8_anw20")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Mike"]
+stream = ExtResource("11_dmrhf")
+emission_angle_enabled = true
+
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(6.49653, 0, 0, 0, 6.49653, 0, 0, 0, 6.49653, 0, 0, 0)
+transform = Transform3D(6.49653, 0, 0, 0, 6.49653, 0, 0, 0, 6.49653, 0, 0.539579, 0)
 visible = false
 use_collision = true
 height = 0.971372
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
 one_shot = true
 autostart = true
 
 [node name="RuneTimer" type="Timer" parent="."]
-wait_time = 7.0
+wait_time = 8.0
 one_shot = true
+
+[node name="GlyphTimer" type="Timer" parent="."]
+wait_time = 6.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bdpku")
+}
+autoplay = "spawn_mike"
+
+[node name="Portal" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Portal"]
+transform = Transform3D(4.38385, 0, 0, 0, 4.38385, 0, 0, 0, 4.38385, 0, 0, 0)
+shape = SubResource("CylinderShape3D_j4oai")
+
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1nn37")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="RuneTimer" to="." method="_on_rune_timer_timeout"]
+[connection signal="timeout" from="GlyphTimer" to="." method="_on_glyph_timer_timeout"]
+[connection signal="body_entered" from="Portal" to="." method="_on_portal_body_entered"]

@@ -17,7 +17,7 @@ emission_energy = 15.0
 modulate = Color(0, 0.145098, 1, 1)
 distance_fade_enabled = true
 distance_fade_begin = 5.0
-distance_fade_length = 5.0
+distance_fade_length = 7.0
 
 [node name="InteractionArea" parent="." instance=ExtResource("2_ss7lq")]
 

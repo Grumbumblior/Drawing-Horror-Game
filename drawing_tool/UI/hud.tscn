@@ -126,8 +126,8 @@ color = Color(1, 1, 1, 0)
 metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ColorRect"]
-modulate = Color(1, 1, 1, 0.0980392)
-self_modulate = Color(1, 1, 1, 0.243137)
+modulate = Color(1, 1, 1, 0.337255)
+self_modulate = Color(1, 1, 1, 0.286275)
 position = Vector2(34.2642, 32.5462)
 scale = Vector2(0.131427, 0.22343)
 texture = ExtResource("3_11y35")

@@ -8,7 +8,8 @@ signal rune_collected(rune)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	show_rune(GameManager.runeSequence[rune_num])
+	GameManager.runes_shuffled.connect(show_rune)
+	#show_rune(GameManager.runeSequence[rune_num])
 	interaction_area.interact = Callable(self, "_on_interact")
 
 
@@ -16,9 +17,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func show_rune(chosenRune):
-	rune_decal.texture_albedo = load("res://images/%s.png" % chosenRune)
-	rune_decal.texture_emission = load("res://images/%s.png" % chosenRune)
+func show_rune():
+	var chosen_rune = GameManager.runeSequence[rune_num]
+	rune_decal.texture_albedo = load("res://images/%s.png" % chosen_rune)
+	rune_decal.texture_emission = load("res://images/%s.png" % chosen_rune)
 
 func _on_interact():
 	GameManager.collect_rune(rune_num)
