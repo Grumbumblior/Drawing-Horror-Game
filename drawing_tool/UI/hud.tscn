@@ -10,6 +10,7 @@
 
 [sub_resource type="SystemFont" id="SystemFont_cpasc"]
 font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ukp0y"]
 line_spacing = 5.0

@@ -19,7 +19,6 @@ config/icon="res://images/cricket_angry.png"
 
 QPointCloudRecognizer="*res://q_recognizer/q_point_cloud_recognizer.gd"
 GameManager="*res://game_manager.gd"
-TutorialManager="*res://tutorial_manager.gd"
 Hud="*res://UI/hud.tscn"
 InteractionManager="*res://interaction_manager.tscn"
 
