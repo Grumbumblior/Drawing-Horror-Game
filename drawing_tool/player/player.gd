@@ -22,6 +22,7 @@ var G = GameManager
 @onready var ray = $Head2/Camera3d/RayCast3D
 @onready var marker = $Head2/Camera3d/Marker3D
 @onready var home = $"../Home"
+@onready var center_mass = $CenterMass
 
 enum{
 	ACT,

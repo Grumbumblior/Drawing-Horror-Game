@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://ca5y43inpnrph"]
+
+[ext_resource type="Script" path="res://enemies/eye.gd" id="1_h1s2l"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_0oxp6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tp30g"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_c213u"]
+material = SubResource("StandardMaterial3D_tp30g")
+radius = 0.25
+height = 0.5
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sadam"]
+points = PackedVector3Array(0, -3, 0, 7.5, -3, -6, -7.5, -3, -6, -7.5, 3, -6, 7.5, 3, -6, 0, 3, 0)
+
+[node name="Eye" type="Node3D"]
+script = ExtResource("1_h1s2l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_0oxp6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.336747)
+mesh = SubResource("SphereMesh_c213u")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+
+[node name="VisionArea" type="Area3D" parent="."]
+transform = Transform3D(3.14506, 0, 0, 0, 3.14506, 0, 0, 0, 3.14506, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisionArea"]
+shape = SubResource("ConvexPolygonShape3D_sadam")
+
+[node name="VisionTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="VisionRaycast" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -100)
+debug_shape_custom_color = Color(0.48976, 0, 0.102519, 1)
+
+[connection signal="timeout" from="VisionTimer" to="." method="_on_vision_timer_timeout"]
