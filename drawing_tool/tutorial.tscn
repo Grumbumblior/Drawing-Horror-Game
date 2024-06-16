@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bcnmyajerit3e"]
+[gd_scene load_steps=23 format=3 uid="uid://bcnmyajerit3e"]
 
 [ext_resource type="Script" path="res://tutorial_manager.gd" id="1_klyiv"]
 [ext_resource type="PackedScene" uid="uid://c3b5ki3ke7o61" path="res://player/player.tscn" id="1_wr2b2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bp1v1atp5nqq5" path="res://images/imageedit_4_6495034658.png" id="8_anw20"]
 [ext_resource type="PackedScene" uid="uid://btrtinkfcd7pt" path="res://environment/Items/runestone.tscn" id="8_hokux"]
 [ext_resource type="AudioStream" uid="uid://d253ra5btshlt" path="res://sound/mike_scream.mp3" id="11_dmrhf"]
+[ext_resource type="AudioStream" uid="uid://dekr30l1kta7u" path="res://sound/music/Horror game 1.mp3" id="12_n13uv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6mhrx"]
 albedo_color = Color(0.316854, 0.316815, 0.427644, 1)
@@ -264,6 +265,13 @@ shape = SubResource("CylinderShape3D_j4oai")
 
 [node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1nn37")
+
+[node name="TutorialSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_n13uv")
+volume_db = -15.0
+autoplay = true
+bus = &"Tutorial"
+parameters/looping = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="RuneTimer" to="." method="_on_rune_timer_timeout"]

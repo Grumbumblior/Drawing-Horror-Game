@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccwvn7lu8b688"]
+
+[ext_resource type="Script" path="res://music_manager.gd" id="1_ec24m"]
+[ext_resource type="AudioStream" uid="uid://d11lfufimvspq" path="res://sound/music/Horror game 3 (without click).mp3" id="3_6v70c"]
+[ext_resource type="AudioStream" uid="uid://bkloamngt0m2i" path="res://sound/music/horror game 2.mp3" id="4_otu11"]
+
+[node name="MusicManager" type="Node"]
+script = ExtResource("1_ec24m")
+
+[node name="Danger" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6v70c")
+bus = &"Danger"
+
+[node name="Chase" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_otu11")
+bus = &"Chase"

@@ -3,6 +3,7 @@ extends Node
 @export var nameLength = 3
 
 @onready var runeSequence : Array
+
 #@onready var timer = $Timer
 var rng = RandomNumberGenerator.new()
 var allRunes = ["Fehu", "Ilx", "Jara", "Kaunaz", "Mannaz", "Naudiz", "Raidho", "Thurisaz", "Uruz"]

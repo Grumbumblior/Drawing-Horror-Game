@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7wm3xth1yelq"]
+
+[ext_resource type="Script" path="res://player/player_shadow.gd" id="1_ox06g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0gkkp"]
+
+[node name="PlayerShadow" type="CharacterBody3D"]
+collision_layer = 17
+collision_mask = 17
+script = ExtResource("1_ox06g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_0gkkp")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

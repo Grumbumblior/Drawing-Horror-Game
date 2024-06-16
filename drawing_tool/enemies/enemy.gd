@@ -11,6 +11,8 @@ enum {
 	HUNT,
 	WAIT
 }
+signal warning
+signal safe
 
 var state
 var navigationAgent : NavigationAgent3D
@@ -94,10 +96,12 @@ func check_for_player():
 			else:
 				print("hunt")
 				state = HUNT
+				warning.emit()
 				navigationAgent.set_target_position(player.global_position)
 
 func _on_patrol_timer_timeout() -> void:
 	state = PATROL
+	safe.emit()
 	waypointIndex += 1
 	if waypointIndex > waypoints.size() - 1:
 		waypointIndex = 0

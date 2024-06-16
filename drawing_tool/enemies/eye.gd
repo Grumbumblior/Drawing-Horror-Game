@@ -7,6 +7,9 @@ extends CharacterBody3D
 @onready var scream = $Scream
 @onready var navigation = $NavigationAgent3D
 
+signal eye_warning
+signal eye_safe
+
 @export var speed : int = 3.5
 
 var target_position
@@ -49,6 +52,7 @@ func _process(delta: float) -> void:
 		HUNT:
 			if navigation.is_navigation_finished():
 				state = SEARCH
+				eye_safe.emit()
 			move_towards_point(speed)
 
 func move_towards_point(speed):
@@ -70,6 +74,7 @@ func look_for_player():
 					var collider = $VisionRaycast.get_collider()
 					if collider.is_in_group("Player"):
 						print("I SEE YOU")
+						eye_warning.emit()
 						return true
 					else:
 						print("i don't see you")
@@ -98,5 +103,14 @@ func _on_killbox_body_entered(body: Node3D) -> void:
 
 func _on_labrynth_won():
 	scream.play()
+	await scream.finished
 	queue_free()
 	#animation.play("die")
+
+
+#func _on_warning_zone_body_entered(body: Node3D) -> void:
+	#eye_warning.emit()
+#
+#
+#func _on_warning_zone_body_exited(body: Node3D) -> void:
+	#eye_safe.emit()

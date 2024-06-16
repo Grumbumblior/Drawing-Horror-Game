@@ -4,6 +4,7 @@ const WALK_SPEED = 2.0
 const SPRINT_SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.003
+const STAMINA_MAX = 200
 
 const BOB_FREQ = 2.0
 const BOB_AMP = 0.16
@@ -12,6 +13,7 @@ const SPELLIGHT = preload("res://spell_light.tscn")
 const RUNE = preload("res://environment/Items/rune_decal.tscn")
 var t_bob = 0.0
 var speed = WALK_SPEED
+var stamina = STAMINA_MAX
 
 @export var spells_dict = {"Eye" : 0, "Time" : 0, "Tele" : 0, "Light" : 0}
 
@@ -23,6 +25,7 @@ var G = GameManager
 @onready var marker = $Head2/Camera3d/Marker3D
 @onready var home = $"../Home"
 @onready var center_mass = $CenterMass
+@onready var aura = $Aura
 
 enum{
 	ACT,
@@ -37,6 +40,7 @@ func _ready():
 	G.spell_collected.connect(_on_spell_collected)
 	G.game_lost.connect(_on_game_lost)
 	G.jump_scare.connect(_on_jump_scare)
+	G.rune_collected.connect(_on_rune_collected)
 	
 func _unhandled_input(event):
 	if event is InputEventMouseMotion and state != DRAW:
@@ -64,10 +68,21 @@ func act_state(delta):
 	if Input.is_action_just_pressed("ui_accept") and ray.is_colliding():
 		state = DRAW
 	
-	if Input.is_action_pressed("sprint"):
-		speed = SPRINT_SPEED
+	if Input.is_action_pressed("sprint") && stamina > 0:
+		if stamina > 0:
+			stamina -= 1
+			speed = SPRINT_SPEED
+		elif stamina == 0:
+			print("pant")
+			
+			speed = WALK_SPEED
 	else:
+		#print(stamina)
 		speed = WALK_SPEED
+	if !Input.is_action_pressed("sprint"):
+		$Pant.play()
+		if stamina < STAMINA_MAX:
+			stamina += 1
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI  actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -174,6 +189,9 @@ func _on_game_lost():
 	print("game over")
 	$DeathTimer.start()
 
+func _on_rune_collected(runeNum):
+	print("play")
+	$Bell.play()
 
 func _on_death_timer_timeout() -> void:
 	get_tree().quit()

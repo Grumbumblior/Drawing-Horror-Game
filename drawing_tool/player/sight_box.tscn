@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://rbcphpc5yqm3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ayy4w"]
+size = Vector3(2.5, 4.465, 0.398)
+
+[node name="SightBox" type="Area3D" groups=["SightBox"]]
+transform = Transform3D(0.299173, 0, 0, 0, 0.299173, 0, 0, 0, 0.299173, 0, -0.702455, 0)
+collision_layer = 4
+collision_mask = 4
+
+[node name="Shape" type="CollisionShape3D" parent="." groups=["SightBox"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0169733, 2.32837, -1.31905)
+shape = SubResource("BoxShape3D_ayy4w")

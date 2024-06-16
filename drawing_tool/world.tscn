@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bgvpmhc5kqmfk"]
+[gd_scene load_steps=19 format=3 uid="uid://bgvpmhc5kqmfk"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_j4cq3"]
 [ext_resource type="PackedScene" uid="uid://c3b5ki3ke7o61" path="res://player/player.tscn" id="1_uqokv"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://w7k25wxc7t7p" path="res://textures/Ground Stones/GroundStones_Roughness.jpg" id="8_0cfps"]
 [ext_resource type="PackedScene" uid="uid://btrtinkfcd7pt" path="res://environment/Items/runestone.tscn" id="9_wdj1s"]
 [ext_resource type="PackedScene" uid="uid://d32en3u3sradd" path="res://environment/Items/spellstone.tscn" id="11_0deos"]
+[ext_resource type="AudioStream" uid="uid://d11lfufimvspq" path="res://sound/music/Horror game 3 (without click).mp3" id="11_cmkcr"]
+[ext_resource type="AudioStream" uid="uid://bkloamngt0m2i" path="res://sound/music/horror game 2.mp3" id="12_qtb7b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ak3sl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -644,6 +646,15 @@ one_shot = true
 [node name="ThanksTimer" type="Timer" parent="."]
 wait_time = 6.0
 one_shot = true
+
+[node name="Danger" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_cmkcr")
+bus = &"Danger"
+
+[node name="Chase" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_qtb7b")
+bus = &"Chase"
+parameters/looping = true
 
 [connection signal="body_entered" from="start_box" to="." method="_on_start_box_body_entered"]
 [connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]

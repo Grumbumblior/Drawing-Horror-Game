@@ -10,6 +10,7 @@ signal spawn_tutorial_runes()
 func _ready() -> void:
 	GameManager.shuffle_runes()
 	GameManager.kill_mike.connect(_on_kill_mike)
+	$TutorialSound.play()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -16,6 +16,8 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0.192157, 0.0509804, 0.0509804, 1)
 boot_splash/image="res://images/jam_logo.png"
 config/icon="res://images/cricket_angry.png"
+run/bg_color=Color(0.14, 0.14, 0.14, 1)
+run/image=""
 
 [autoload]
 
@@ -42,6 +44,9 @@ enabled=PackedStringArray()
 Player=""
 EnemyWaypoint=""
 EyeWaypoints=""
+Enemy=""
+SightBox=""
+ShyWaypoints=""
 
 [input]
 

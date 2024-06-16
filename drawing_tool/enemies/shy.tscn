@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://dli7ahuvfg00l"]
+
+[ext_resource type="Script" path="res://enemies/shy.gd" id="1_6dlex"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wbc7r"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f4u8t"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jnu0a"]
+
+[node name="Shy" type="CharacterBody3D" groups=["Enemy"]]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_6dlex")
+
+[node name="CenterMass" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0145, 0.943566, -0.995491)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.99981, 0, 0, 0, 1.99981, 0, 0, 0, 1.99981, 0.523541, 0.481487, -0.48528)
+shape = SubResource("CapsuleShape3D_wbc7r")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+use_collision = true
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="."]
+transform = Transform3D(0.204396, 0, 0, 0, 0.204396, 0, 0, 0, 0.418267, 0.426384, 0.478973, -0.956833)
+use_collision = true
+
+[node name="VisionRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.498864, 0.667053, -0.505643)
+target_position = Vector3(0, 0, -100)
+collision_mask = 5
+collide_with_areas = true
+debug_shape_custom_color = Color(0.48976, 0, 0.102519, 1)
+
+[node name="LookTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="PatrolTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="WarningShape" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WarningShape"]
+transform = Transform3D(37.9466, 0, 0, 0, 37.9466, 0, 0, 0, 37.9466, 0, 0, 0)
+shape = SubResource("SphereShape3D_f4u8t")
+
+[node name="AlertShape" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AlertShape"]
+transform = Transform3D(15.719, 0, 0, 0, 15.719, 0, 0, 0, 15.719, 0, 0, 0)
+shape = SubResource("SphereShape3D_jnu0a")
+
+[connection signal="timeout" from="LookTimer" to="." method="_on_look_timer_timeout"]
+[connection signal="timeout" from="PatrolTimer" to="." method="_on_patrol_timer_timeout"]
+[connection signal="body_entered" from="WarningShape" to="." method="_on_warning_shape_body_entered"]
