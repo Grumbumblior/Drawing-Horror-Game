@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c0dqnydg11xhd"]
+[gd_scene load_steps=15 format=3 uid="uid://c0dqnydg11xhd"]
 
 [ext_resource type="Script" path="res://UI/hud.gd" id="1_i8tqd"]
 [ext_resource type="Shader" path="res://static.gdshader" id="2_eki5o"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d08u63gf0bw8y" path="res://images/cricket_angry.png" id="3_11y35"]
 [ext_resource type="Texture2D" uid="uid://bydn230gtyry" path="res://images/Time.png" id="4_xg85v"]
 [ext_resource type="Texture2D" uid="uid://n6k8tqpqcvxc" path="res://images/Eye.png" id="5_0tk8t"]
+[ext_resource type="Texture2D" uid="uid://dcjdttfssrsne" path="res://images/Presentation1.jpg" id="8_cr67m"]
 
 [sub_resource type="SystemFont" id="SystemFont_cpasc"]
 font_names = PackedStringArray("Impact")
@@ -213,3 +214,19 @@ metadata/_edit_use_anchors_ = true
 libraries = {
 "": SubResource("AnimationLibrary_ycubi")
 }
+
+[node name="EndScreen" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.274195
+anchor_bottom = 0.358456
+offset_right = -275.872
+offset_bottom = -192.28
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(7.89681, 5.80699)
+size_flags_horizontal = 4
+texture = ExtResource("8_cr67m")
+expand_mode = 2
+metadata/_edit_use_anchors_ = true

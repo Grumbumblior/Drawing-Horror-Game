@@ -49,4 +49,5 @@ func _on_portal_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
 		Hud.tutorial_message("")
 		if body.is_in_group("Player"):
-			get_tree().change_scene_to_file("res://world.tscn")
+			get_tree().change_scene_to_file("res://labrynth.tscn")
+			#queue_free()

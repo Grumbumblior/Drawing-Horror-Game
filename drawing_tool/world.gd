@@ -9,8 +9,9 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Hud.message.position.x = 450
-	Hud.tutorial_message("Hi this is Drake\nI'm jumping you to the last level\nCricket turns on you\nDon't get caught")
+	GameManager.game_won.connect(_on_game_won)
+	Hud.message.position.x = 400
+	Hud.tutorial_message("It has to be this way")
 	for P in $Patrolpoints.get_children():
 		patrol_array.append(P)
 	patrol_array.shuffle()
@@ -31,3 +32,16 @@ func _on_start_box_body_entered(body: Node3D) -> void:
 		#cricket.waypoints = patrol_array
 		cricket.global_position = spawn.global_position
 		$start_box.queue_free()
+		#GameManager.emit_signal("game_won")
+
+func _on_game_won():
+	Hud.tutorial_message("*Thump*")
+	$WinTimer.start()
+
+func _on_win_timer_timeout() -> void:
+	Hud.end_screen.visible = true
+	$ThanksTimer.start()
+
+
+func _on_thanks_timer_timeout() -> void:
+	get_tree().quit()

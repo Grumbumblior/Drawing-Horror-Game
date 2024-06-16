@@ -1,21 +1,135 @@
-[gd_scene load_steps=6 format=3 uid="uid://ca5y43inpnrph"]
+[gd_scene load_steps=14 format=3 uid="uid://ca5y43inpnrph"]
 
 [ext_resource type="Script" path="res://enemies/eye.gd" id="1_h1s2l"]
+[ext_resource type="AudioStream" uid="uid://qfyjmo70okfw" path="res://sound/alien-screaming-82512.mp3" id="2_m3yvq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6lft"]
+emission_enabled = true
+emission = Color(1.16476e-05, 0.913446, 0.405032, 1)
+emission_energy_multiplier = 5.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_0oxp6"]
+material = SubResource("StandardMaterial3D_k6lft")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tp30g"]
 albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 4.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_c213u"]
 material = SubResource("StandardMaterial3D_tp30g")
 radius = 0.25
 height = 0.5
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sadam"]
-points = PackedVector3Array(0, -3, 0, 7.5, -3, -6, -7.5, -3, -6, -7.5, 3, -6, 7.5, 3, -6, 0, 3, 0)
+[sub_resource type="SphereShape3D" id="SphereShape3D_xbdjw"]
 
-[node name="Eye" type="Node3D"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sadam"]
+points = PackedVector3Array(0, -3, 0, 3.25, -3, -8, -3.25, -3, -8, -3.25, 3, -8, 3.25, 3, -8, 0, 3, 0)
+
+[sub_resource type="Animation" id="Animation_4y8jv"]
+resource_name = "rotate"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.996),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end_search"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VisionTimer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [-1],
+"method": &"start"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_i3cug"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pw38q"]
+resource_name = "die"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.999),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5srhq"]
+_data = {
+"RESET": SubResource("Animation_i3cug"),
+"die": SubResource("Animation_pw38q"),
+"rotate": SubResource("Animation_4y8jv")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oosew"]
+
+[node name="Eye" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.05707, 0)
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_h1s2l")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -25,22 +139,40 @@ mesh = SubResource("SphereMesh_0oxp6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.336747)
 mesh = SubResource("SphereMesh_c213u")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="WarningZone" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WarningZone"]
+transform = Transform3D(37.6443, 0, 0, 0, 37.6443, 0, 0, 0, 37.6443, 0, 0, 0)
+shape = SubResource("SphereShape3D_xbdjw")
 
 [node name="VisionArea" type="Area3D" parent="."]
-transform = Transform3D(3.14506, 0, 0, 0, 3.14506, 0, 0, 0, 3.14506, 0, 0, 0)
+transform = Transform3D(4.94304, 0, 0, 0, 4.94304, 0, 0, 0, 4.94304, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VisionArea"]
 shape = SubResource("ConvexPolygonShape3D_sadam")
 
 [node name="VisionTimer" type="Timer" parent="."]
 wait_time = 0.25
-autostart = true
 
 [node name="VisionRaycast" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -100)
 debug_shape_custom_color = Color(0.48976, 0, 0.102519, 1)
 
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5srhq")
+}
+
+[node name="Scream" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_m3yvq")
+
+[node name="Killbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Killbox"]
+transform = Transform3D(2.48678, 0, 0, 0, 2.48678, 0, 0, 0, 2.48678, 0, 0, 0)
+shape = SubResource("SphereShape3D_oosew")
+
 [connection signal="timeout" from="VisionTimer" to="." method="_on_vision_timer_timeout"]
+[connection signal="body_entered" from="Killbox" to="." method="_on_killbox_body_entered"]

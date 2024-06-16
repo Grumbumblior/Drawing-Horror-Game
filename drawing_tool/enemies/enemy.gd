@@ -70,7 +70,6 @@ func patrol_state():
 
 func move_towards_point(speed):
 	var targetPos = navigationAgent.get_next_path_position()
-
 	var direction = global_position.direction_to(targetPos)
 	if global_position != targetPos:
 		face_direction(targetPos)
@@ -149,10 +148,9 @@ func _on_sight_body_exited(body: Node3D) -> void:
 
 func _on_killbox_body_entered(body: Node3D) -> void:
 	if body.is_in_group("Player"):
-		body.global_position = Vector3(175, -782, 101)
-		print("game over")
+		
 		GameManager.game_over()
-		$JumpscareTimer.start()
+		
 
 func _on_jump_scare():
 	self.global_position = $"../World/Scaremarker".global_position

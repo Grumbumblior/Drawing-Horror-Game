@@ -3,6 +3,7 @@ extends Control
 @onready var label = %Label
 @onready var message = $CricketMessage
 @onready var animation = $AnimationPlayer
+@onready var end_screen = $EndScreen
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,8 +35,9 @@ func _on_rune_collected(runeNum):
 	runePics[runeNum].visible = true
 	
 func _on_game_won():
-	label.text = "You Win! You Beat Cricket! Be proud."
-	label.visible = true
+	#label.text = "You Win! You Beat Cricket! Be proud."
+	#label.visible = true
+	pass
 
 func _on_game_lost():
 	label.text = "You have been devoured by Cricket."

@@ -13,6 +13,8 @@ config_version=5
 config/name="DrawingHorrorGame"
 run/main_scene="res://mainmenu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/bg_color=Color(0.192157, 0.0509804, 0.0509804, 1)
+boot_splash/image="res://images/jam_logo.png"
 config/icon="res://images/cricket_angry.png"
 
 [autoload]
@@ -24,6 +26,7 @@ InteractionManager="*res://interaction_manager.tscn"
 
 [display]
 
+window/size/mode=3
 window/size/borderless=true
 
 [editor]
@@ -38,6 +41,7 @@ enabled=PackedStringArray()
 
 Player=""
 EnemyWaypoint=""
+EyeWaypoints=""
 
 [input]
 

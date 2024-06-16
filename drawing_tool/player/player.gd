@@ -170,3 +170,10 @@ func _on_game_won():
 
 func _on_game_lost():
 	$Scream.play()
+	global_position = Vector3(175, -782, 101)
+	print("game over")
+	$DeathTimer.start()
+
+
+func _on_death_timer_timeout() -> void:
+	get_tree().quit()
