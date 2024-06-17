@@ -15,6 +15,7 @@ var castRunes = []
 signal runes_shuffled
 signal game_won
 signal labrynth_won
+signal maze_won
 signal game_lost
 signal tutorial_message(text : String)
 signal rune_collected(runeNum : int)
@@ -56,6 +57,8 @@ func check_won():
 			game_won.emit()
 		elif get_tree().current_scene.name == "Labrynth":
 			labrynth_won.emit()
+		elif get_tree().current_scene.name == "Maze":
+			maze_won.emit()
 		elif get_tree().current_scene.name == "Tutorial":
 			#TutorialManager.banish()
 			kill_mike.emit()

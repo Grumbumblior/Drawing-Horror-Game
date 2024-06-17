@@ -649,10 +649,12 @@ one_shot = true
 
 [node name="Danger" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_cmkcr")
+volume_db = -15.0
 bus = &"Danger"
 
 [node name="Chase" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_qtb7b")
+volume_db = -10.0
 bus = &"Chase"
 parameters/looping = true
 

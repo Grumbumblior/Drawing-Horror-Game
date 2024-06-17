@@ -14,12 +14,13 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.game_won.connect(_on_game_won)
-	Hud.message.position.x = 400
+	Hud.message.position.x = 350
 	Hud.tutorial_message("It has to be this way")
 	for P in $Patrolpoints.get_children():
 		patrol_array.append(P)
 	patrol_array.shuffle()
 	GameManager.shuffle_runes()
+	AudioServer.set_bus_mute(DANGER_BUS_ID, false)
 	AudioServer.set_bus_mute(CHASE_BUS_ID, true)
 	danger_music.play()
 	chase_music.play()

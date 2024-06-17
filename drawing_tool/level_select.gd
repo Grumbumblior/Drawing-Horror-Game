@@ -26,3 +26,7 @@ func _on_back_pressed() -> void:
 
 func _on_level_2_pressed() -> void:
 	get_tree().change_scene_to_file("res://labrynth.tscn")
+
+
+func _on_level_1_pressed() -> void:
+	get_tree().change_scene_to_file("res://maze.tscn")

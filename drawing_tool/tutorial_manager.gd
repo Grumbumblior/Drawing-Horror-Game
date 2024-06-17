@@ -6,6 +6,7 @@ signal spawn_tutorial_runes()
 @onready var mike = $Mike
 @onready var animation = $AnimationPlayer
 @onready var sound = $Mike/AudioStreamPlayer3D
+@onready var TUTORIAL_BUS_ID = AudioServer.get_bus_index("Tutorial")
 
 func _ready() -> void:
 	GameManager.shuffle_runes()
@@ -47,8 +48,10 @@ func _on_glyph_timer_timeout() -> void:
 
 
 func _on_portal_body_entered(body: Node3D) -> void:
+	
 	if body.is_in_group("Player"):
+		$TutorialSound.stop()
 		Hud.tutorial_message("")
 		if body.is_in_group("Player"):
-			get_tree().change_scene_to_file("res://labrynth.tscn")
+			get_tree().change_scene_to_file("res://maze.tscn")
 			#queue_free()

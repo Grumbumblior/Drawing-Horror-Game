@@ -140,6 +140,7 @@ func on_gesture_classified(gesture_name : StringName):
 func check_valid_rune(gesture_name):
 	if gesture_name in G.allRunes:
 		if gesture_name == G.runeSequence[G.runeIndex]:
+			$lleB.play()
 			G.castRunes.append(gesture_name.replace("&", ""))
 			G.runeIndex = G.runeIndex + 1
 			G.check_won()

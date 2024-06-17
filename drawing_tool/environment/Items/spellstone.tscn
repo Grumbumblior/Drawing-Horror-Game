@@ -20,6 +20,7 @@ distance_fade_begin = 5.0
 distance_fade_length = 5.0
 
 [node name="InteractionArea" parent="." instance=ExtResource("2_1lcos")]
+action_name = "take spell rune"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
 transform = Transform3D(3.38656, 0, 0, 0, 2.03917, 0, 0, 0, 8.35381, 0, 0, 0)
